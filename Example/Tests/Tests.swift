@@ -1,5 +1,4 @@
 import XCTest
-import LDTools-Swift
 
 class Tests: XCTestCase {
     

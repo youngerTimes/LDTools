@@ -1,0 +1,6 @@
+framework module LDTools_Swift {
+  umbrella header "LDTools-Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

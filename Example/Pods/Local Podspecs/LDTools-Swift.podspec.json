@@ -1,0 +1,64 @@
+{
+  "name": "LDTools-Swift",
+  "version": "0.1.0",
+  "summary": "喜望软件：iOS集合开发包(Swift)",
+  "swift_versions": "5.0",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "http://www.sinata.cn",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "841720330@qq.com": "841720330@qq.com"
+  },
+  "source": {
+    "git": "http://yangk@sinata.cn:10101/gitblit/r/ios/SwiftFrame.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "LDTools-Swift/Classes/**/*",
+  "resource_bundles": {
+    "SwiftFrameRes": [
+      "LDTools-Swift/Assets/*"
+    ]
+  },
+  "dependencies": {
+    "SnapKit": [
+
+    ],
+    "QMUIKit": [
+
+    ],
+    "IQKeyboardManagerSwift": [
+
+    ],
+    "RxSwift": [
+
+    ],
+    "RxCocoa": [
+
+    ],
+    "RxDataSources": [
+
+    ],
+    "MJRefresh": [
+
+    ],
+    "HandyJSON": [
+
+    ],
+    "Kingfisher": [
+
+    ],
+    "EmptyDataSet-Swift": [
+
+    ],
+    "SwifterSwift": [
+
+    ]
+  },
+  "swift_version": "5.0"
+}
