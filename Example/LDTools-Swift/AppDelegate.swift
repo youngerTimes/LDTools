@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@_exported import LDTools_Swift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

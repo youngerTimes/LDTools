@@ -17,7 +17,7 @@ import UIKit
 /// 使用时需要手动加载`ld_addReresh`
 /// 数据回掉在`ld_getData`
 ///
-open class JQ_RefreshTVC: LD_BaseVC,LD_Refreshable{
+open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
     public var page = 1 //当前页数
     public var totalPages = -1 //总页数
     private var scrollView:UIScrollView?

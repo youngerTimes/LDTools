@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		138890D325D0E60600ACDF98 /* RefreshTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138890D225D0E60600ACDF98 /* RefreshTableViewController.swift */; };
+		138890FD25D0EAD600ACDF98 /* ProgressbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138890FC25D0EAD600ACDF98 /* ProgressbarVC.swift */; };
+		1388910125D0EDD200ACDF98 /* CreateQRVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388910025D0EDD200ACDF98 /* CreateQRVC.swift */; };
+		1388913E25D1178A00ACDF98 /* RollDigitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388913D25D1178A00ACDF98 /* RollDigitVC.swift */; };
+		138891B625D12B8D00ACDF98 /* CellAniViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138891B525D12B8D00ACDF98 /* CellAniViewController.swift */; };
 		13B4690825CBD6DE0068FF20 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B4690725CBD6DE0068FF20 /* MenuVC.swift */; };
 		13CAC1D225CBA8E500480B2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13CAC1D125CBA8E500480B2C /* Main.storyboard */; };
 		279CEBF5237EE25E0CB62214 /* Pods_LDTools_Swift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB085AA5CB087ADDD1641434 /* Pods_LDTools_Swift_Example.framework */; };
@@ -28,6 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		138890D225D0E60600ACDF98 /* RefreshTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTableViewController.swift; sourceTree = "<group>"; };
+		138890FC25D0EAD600ACDF98 /* ProgressbarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressbarVC.swift; sourceTree = "<group>"; };
+		1388910025D0EDD200ACDF98 /* CreateQRVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQRVC.swift; sourceTree = "<group>"; };
+		1388913D25D1178A00ACDF98 /* RollDigitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollDigitVC.swift; sourceTree = "<group>"; };
+		138891B525D12B8D00ACDF98 /* CellAniViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAniViewController.swift; sourceTree = "<group>"; };
 		13B4690725CBD6DE0068FF20 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		13CAC1D125CBA8E500480B2C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* LDTools-Swift_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LDTools-Swift_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +80,11 @@
 			isa = PBXGroup;
 			children = (
 				13B4690725CBD6DE0068FF20 /* MenuVC.swift */,
+				138890D225D0E60600ACDF98 /* RefreshTableViewController.swift */,
+				138890FC25D0EAD600ACDF98 /* ProgressbarVC.swift */,
+				1388910025D0EDD200ACDF98 /* CreateQRVC.swift */,
+				1388913D25D1178A00ACDF98 /* RollDigitVC.swift */,
+				138891B525D12B8D00ACDF98 /* CellAniViewController.swift */,
 			);
 			name = Demo_VC;
 			sourceTree = "<group>";
@@ -338,8 +353,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				138890FD25D0EAD600ACDF98 /* ProgressbarVC.swift in Sources */,
+				1388910125D0EDD200ACDF98 /* CreateQRVC.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1388913E25D1178A00ACDF98 /* RollDigitVC.swift in Sources */,
+				138891B625D12B8D00ACDF98 /* CellAniViewController.swift in Sources */,
+				138890D325D0E60600ACDF98 /* RefreshTableViewController.swift in Sources */,
 				13B4690825CBD6DE0068FF20 /* MenuVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

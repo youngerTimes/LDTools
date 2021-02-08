@@ -38,14 +38,17 @@ class ViewController: UIViewController {
         title = "DEMO"
         tableView.delegate = self
         tableView.dataSource = self
+
+        //VC
         vCItems.append(ItemsVC(title: "网页加载控制器", VC: LD_WebVC.self))
-        vCItems.append(ItemsVC(title: "下拉菜单", VC: MenuVC.self))
+        vCItems.append(ItemsVC(title: "Base_下拉刷新，上拉加载", VC: RefreshTableViewController.self))
 
-        LDTools.checkVersion { (hasVersion, versionModel) in
-            if hasVersion{
+        viewItems.append(ItemsVC(title: "下拉菜单", VC: MenuVC.self))
+        viewItems.append(ItemsVC(title: "二维码", VC: CreateQRVC.self))
+        viewItems.append(ItemsVC(title: "滚动数字", VC: RollDigitVC.self))
 
-            }
-        }
+        animationItems.append(ItemsVC(title: "进度条", VC: ProgressbarVC.self))
+        animationItems.append(ItemsVC(title: "TableView-Cell动画", VC: CellAniViewController.self))
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,14 +74,26 @@ extension ViewController:UITableViewDelegate{
                 let item = vCItems[indexPath.row].VC!
                 if let _ = item as? LD_WebVC.Type {
                     navigationController?.pushViewController(LD_WebVC(url: "https://www.hangge.com"), animated: true)
-
                 }else{
                     let v = item.init()
                     navigationController?.pushViewController(v, animated: true)
                 }
 
+            case 1:
+                let item = viewItems[indexPath.row].VC!
+                let v = item.init()
+                navigationController?.pushViewController(v, animated: true)
+
+            case 2:
+                let item = toolsItems[indexPath.row].VC!
+                let v = item.init()
+                navigationController?.pushViewController(v, animated: true)
 
 
+            case 3:
+                let item = animationItems[indexPath.row].VC!
+                let v = item.init()
+                navigationController?.pushViewController(v, animated: true)
 
             default:break
         }
@@ -140,7 +155,6 @@ extension ViewController:UITableViewDataSource{
                 case 1:return viewItems.count
                 case 2:return toolsItems.count
                 case 3:return animationItems.count
-
                 default:return 0
             }
         }else{
@@ -156,6 +170,9 @@ extension ViewController:UITableViewDataSource{
 
         switch indexPath.section {
             case 0:cell?.textLabel?.text = vCItems[indexPath.row].title
+            case 1:cell?.textLabel?.text = viewItems[indexPath.row].title
+            case 2:cell?.textLabel?.text = toolsItems[indexPath.row].title
+            case 3:cell?.textLabel?.text = animationItems[indexPath.row].title
             default:break
         }
 

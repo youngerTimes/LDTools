@@ -291,7 +291,7 @@ public extension String{
     }
 
     ///JSONString转换为数组
-    func ld_toArray(jsonString:String) ->NSArray{
+    static func ld_toArray(jsonString:String) ->NSArray{
         let jsonData:Data = jsonString.data(using: .utf8)!
         let array = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
         if array != nil {
