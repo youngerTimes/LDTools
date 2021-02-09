@@ -22,7 +22,7 @@ class ItemsVC{
     }
 }
 
-class ViewController: UIViewController {
+class ViewController: LD_BaseVC {
     private var shinkItem = [false,false,false,false]
     private var Keys = ["VC","View","Tool","Animation"]
     private var vCItems = [ItemsVC]()
@@ -42,13 +42,18 @@ class ViewController: UIViewController {
         //VC
         vCItems.append(ItemsVC(title: "网页加载控制器", VC: LD_WebVC.self))
         vCItems.append(ItemsVC(title: "Base_下拉刷新，上拉加载", VC: RefreshTableViewController.self))
+        vCItems.append(ItemsVC(title: "引导图", VC: GuideVC.self))
+        vCItems.append(ItemsVC(title: "Banner", VC: BannerDemo.self))
 
         viewItems.append(ItemsVC(title: "下拉菜单", VC: MenuVC.self))
         viewItems.append(ItemsVC(title: "二维码", VC: CreateQRVC.self))
         viewItems.append(ItemsVC(title: "滚动数字", VC: RollDigitVC.self))
 
+        toolsItems.append(ItemsVC(title: "导航(自适应百度，高德，原生)", VC: MapNavVC.self))
+
         animationItems.append(ItemsVC(title: "进度条", VC: ProgressbarVC.self))
         animationItems.append(ItemsVC(title: "TableView-Cell动画", VC: CellAniViewController.self))
+        animationItems.append(ItemsVC(title: "心跳", VC: AniVC.self))
     }
 
     override func didReceiveMemoryWarning() {

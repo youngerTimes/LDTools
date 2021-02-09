@@ -19,7 +19,7 @@ public enum LD_TableAniType {
 }
 
 
-class LD_AnisTool: NSObject {
+public class LD_AnisTool: NSObject {
 
     static public let BasicAni_Frame = "frame"
 
@@ -75,6 +75,7 @@ class LD_AnisTool: NSObject {
         basic.repeatCount = repeatCount
         basic.isRemovedOnCompletion = false
         basic.fillMode = .forwards
+        basic.autoreverses = true
         basic.keyPath = LD_AnisTool.BasicAni_Scale
         return basic
     }
@@ -92,6 +93,7 @@ class LD_AnisTool: NSObject {
         basic.repeatCount = repeatCount
         basic.isRemovedOnCompletion = false
         basic.fillMode = .forwards
+        basic.autoreverses = true
         basic.keyPath = LD_AnisTool.BasicAni_Size
         return basic
     }
@@ -125,6 +127,7 @@ class LD_AnisTool: NSObject {
         keyAni.values = [1.0,0.4,1.0]
         keyAni.duration = duration
         keyAni.repeatCount = repeatCount
+        keyAni.autoreverses = true
         keyAni.keyPath = BasicAni_Alpha
         return keyAni
     }
@@ -148,6 +151,29 @@ class LD_AnisTool: NSObject {
         group.isRemovedOnCompletion = false
 
         return group
+    }
+
+    public static func scaleShirk(_ btn:UIButton){
+        let basicAnimation = CABasicAnimation()
+        basicAnimation.keyPath = "transform.scale"
+        basicAnimation.fromValue = 1.0
+        basicAnimation.toValue = 0.7
+        basicAnimation.repeatCount = 1
+        basicAnimation.duration = 0.3
+        basicAnimation.isRemovedOnCompletion = true
+        basicAnimation.fillMode = .forwards
+        btn.layer.add(basicAnimation, forKey: nil)
+    }
+
+    public static func scaleHuge(_ btn:UIButton){
+        let bgImg = UIImageView(image: btn.imageView?.image)
+        btn.addSubview(bgImg)
+        UIView.animate(withDuration: 0.6, animations: {
+            bgImg.alpha = 0
+            bgImg.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        }) { (complete) in
+            bgImg.removeFromSuperview()
+        }
     }
 
     /// 隐藏Tabbar

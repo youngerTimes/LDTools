@@ -97,6 +97,8 @@
 		1388916825D11E8A00ACDF98 /* LD_OProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388916725D11E8A00ACDF98 /* LD_OProgressView.swift */; };
 		1388917B25D1267A00ACDF98 /* LD_AnisTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388917A25D1267A00ACDF98 /* LD_AnisTool.swift */; };
 		1388918E25D126CE00ACDF98 /* UITableView+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1388918D25D126CE00ACDF98 /* UITableView+LDExtension.swift */; };
+		138891BB25D13B9B00ACDF98 /* LDGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138891BA25D13B9B00ACDF98 /* LDGuideVC.swift */; };
+		138891F425D1407900ACDF98 /* NSObject+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138891F325D1407900ACDF98 /* NSObject+LDExtension.swift */; };
 		143900E7B194F23736AFBADBE65643A1 /* CALayer+QMUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614C0C110790CDF5972634261BF7DEF /* CALayer+QMUI.m */; };
 		14B4D8DB65DFEDFBC4FD81F6E4EF1FF8 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB0043542F7F764688C9442CA337FB5 /* Debug.swift */; };
 		152B939F6E97D6704E03EFD1C215AA7B /* ControlEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926153EEBD76BFA5AA7872B64AC32163 /* ControlEvent.swift */; };
@@ -1282,6 +1284,8 @@
 		1388916725D11E8A00ACDF98 /* LD_OProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LD_OProgressView.swift; sourceTree = "<group>"; };
 		1388917A25D1267A00ACDF98 /* LD_AnisTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LD_AnisTool.swift; sourceTree = "<group>"; };
 		1388918D25D126CE00ACDF98 /* UITableView+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+LDExtension.swift"; sourceTree = "<group>"; };
+		138891BA25D13B9B00ACDF98 /* LDGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDGuideVC.swift; sourceTree = "<group>"; };
+		138891F325D1407900ACDF98 /* NSObject+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+LDExtension.swift"; sourceTree = "<group>"; };
 		138E03EBE754E91A701616913E63E788 /* UITableView+QMUICellHeightKeyCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+QMUICellHeightKeyCache.m"; path = "QMUIKit/QMUIComponents/QMUICellHeightKeyCache/UITableView+QMUICellHeightKeyCache.m"; sourceTree = "<group>"; };
 		13A397399F71C63C6B99429D65BEEBB3 /* AnyObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyObserver.swift; path = RxSwift/AnyObserver.swift; sourceTree = "<group>"; };
 		13B52E557B54C7A49E845595F7A23848 /* CALayer+QMUIViewAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CALayer+QMUIViewAnimation.h"; path = "QMUIKit/QMUIComponents/CALayer+QMUIViewAnimation.h"; sourceTree = "<group>"; };
@@ -2581,6 +2585,7 @@
 		138890D625D0EA2C00ACDF98 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				138891B925D13B8400ACDF98 /* VC */,
 				138890D725D0EA4000ACDF98 /* View */,
 			);
 			name = Module;
@@ -2596,6 +2601,14 @@
 				1388916725D11E8A00ACDF98 /* LD_OProgressView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		138891B925D13B8400ACDF98 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				138891BA25D13B9B00ACDF98 /* LDGuideVC.swift */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		165C2EC005B626E9F26D6380C18A2684 /* Support Files */ = {
@@ -4126,6 +4139,7 @@
 				1388911725D10C4C00ACDF98 /* UIImageView+LDExtension.swift */,
 				1388915425D1192100ACDF98 /* Currency+LDExtension.swift */,
 				1388918D25D126CE00ACDF98 /* UITableView+LDExtension.swift */,
+				138891F325D1407900ACDF98 /* NSObject+LDExtension.swift */,
 			);
 			name = Extension;
 			path = "LDTools-Swift/Classes/Extension";
@@ -5659,8 +5673,10 @@
 			files = (
 				6ED5E365758788EE8A44DA6DAF96CCC8 /* LD_BaseNavigationController.swift in Sources */,
 				1388918E25D126CE00ACDF98 /* UITableView+LDExtension.swift in Sources */,
+				138891BB25D13B9B00ACDF98 /* LDGuideVC.swift in Sources */,
 				535662DC63F6DE86AE4B4808EEDE507E /* LD_BaseVC.swift in Sources */,
 				A4666F226F0B85C60B14A4128D34D52C /* Ld_Def.swift in Sources */,
+				138891F425D1407900ACDF98 /* NSObject+LDExtension.swift in Sources */,
 				138890D925D0EA5700ACDF98 /* LDProgressView.swift in Sources */,
 				1388917B25D1267A00ACDF98 /* LD_AnisTool.swift in Sources */,
 				1388915525D1192100ACDF98 /* Currency+LDExtension.swift in Sources */,
