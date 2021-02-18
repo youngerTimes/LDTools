@@ -48,6 +48,7 @@ class ViewController: LD_BaseVC {
         viewItems.append(ItemsVC(title: "下拉菜单", VC: MenuVC.self))
         viewItems.append(ItemsVC(title: "二维码", VC: CreateQRVC.self))
         viewItems.append(ItemsVC(title: "滚动数字", VC: RollDigitVC.self))
+        viewItems.append(ItemsVC(title: "星星滑动", VC: StarRateVC.self))
 
         toolsItems.append(ItemsVC(title: "导航(自适应百度，高德，原生)", VC: MapNavVC.self))
 

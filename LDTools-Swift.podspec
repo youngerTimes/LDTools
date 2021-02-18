@@ -47,6 +47,7 @@ TODO: Add long description of the pod here.
   s.dependency 'Kingfisher'
   s.dependency 'EmptyDataSet-Swift'
   s.dependency 'SwifterSwift'
+  s.dependency 'XCGLogger'
   
   # s.resource_bundles = {
   #   'LDTools-Swift' => ['LDTools-Swift/Assets/*.png']

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// 基础数值Label-动画
 public class LDRollDigitLabel: UIView {
     private var scrollViews = [UIScrollView]()
     private var labels = [UILabel]()

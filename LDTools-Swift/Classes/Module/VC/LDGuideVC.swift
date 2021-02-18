@@ -16,7 +16,6 @@ public protocol LD_GuideDelegate:NSObject{
 /**
  ## 启动时的向导页 ##
  如果需要改进，可以继承并改动
-
  */
 public class LDGuideVC: UIViewController{
 

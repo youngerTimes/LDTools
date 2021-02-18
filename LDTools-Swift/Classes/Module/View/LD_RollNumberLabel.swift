@@ -10,10 +10,10 @@ import UIKit
 /// LD_RollDigitLabel的强化版本，可以适用于浮点数，整数，金融类型
 public class LD_RollNumberLabel: UIView {
 
-    var defaultNumber:NSNumber?
-    var financeType = false
+    var defaultNumber:NSNumber? //默认数值
+    var financeType = false // 是否是金融类
     var financeStyle:NumberFormatter.Style = .currency
-    var format:String = ",###.##"
+    var format:String = ",###.##" //金融格式
     var rawText = ""
     var items = [String]()
     public var font = UIFont.systemFont(ofSize: 18)
@@ -21,6 +21,7 @@ public class LD_RollNumberLabel: UIView {
     var digalScrollView = [UIScrollView]()
     var totalScrollView = [UIScrollView]()
 
+    //设置值
     public var valueNumber:NSNumber = NSNumber(floatLiteral: 0){
         didSet{
             if self.valueNumber.stringValue.contains(".") {

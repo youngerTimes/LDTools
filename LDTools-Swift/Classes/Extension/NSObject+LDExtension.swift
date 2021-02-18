@@ -8,6 +8,8 @@
 import Foundation
 
 public extension NSObject{
+
+    /// 打印该类的所有属性
     func ld_mirror(){
         let hMirror  = Mirror(reflecting: self)
         print("==================\(hMirror.subjectType)======================")

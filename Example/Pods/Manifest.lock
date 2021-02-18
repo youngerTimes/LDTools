@@ -1,6 +1,9 @@
 PODS:
   - Differentiator (5.0.0)
   - EmptyDataSet-Swift (5.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.6)
   - Kingfisher (4.10.1)
@@ -16,7 +19,11 @@ PODS:
     - RxSwift
     - SnapKit
     - SwifterSwift
+    - XCGLogger
   - MJRefresh (3.5.0)
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - QMUIKit (4.1.3):
     - QMUIKit/QMUIComponents (= 4.1.3)
     - QMUIKit/QMUICore (= 4.1.3)
@@ -357,18 +364,25 @@ PODS:
   - SwifterSwift/SpriteKit (5.1.0)
   - SwifterSwift/SwiftStdlib (5.1.0)
   - SwifterSwift/UIKit (5.1.0)
+  - XCGLogger (7.0.1):
+    - XCGLogger/Core (= 7.0.1)
+  - XCGLogger/Core (7.0.1):
+    - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - FMDB
   - LDTools-Swift (from `../`)
 
 SPEC REPOS:
   trunk:
     - Differentiator
     - EmptyDataSet-Swift
+    - FMDB
     - HandyJSON
     - IQKeyboardManagerSwift
     - Kingfisher
     - MJRefresh
+    - ObjcExceptionBridging
     - QMUIKit
     - RxCocoa
     - RxDataSources
@@ -376,6 +390,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - SwifterSwift
+    - XCGLogger
 
 EXTERNAL SOURCES:
   LDTools-Swift:
@@ -384,11 +399,13 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  LDTools-Swift: 45efb59f22d6303ca9d03a575268023e37147cf4
+  LDTools-Swift: 55c70157ce06d5eaa06864d7b91e9ed47684ea18
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   QMUIKit: 1063a99f90aedd6e2dd65026ce0df46e6785e67b
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
@@ -396,7 +413,8 @@ SPEC CHECKSUMS:
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwifterSwift: a9e8e144832638c2850b43da5feaf9598c6ad65b
+  XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 676f09c627aa35d073ce6e73d8c9f90d1920c6ba
+PODFILE CHECKSUM: a69beae79bdfe4ce17220a94ee9c457410ef051e
 
 COCOAPODS: 1.10.0.beta.2

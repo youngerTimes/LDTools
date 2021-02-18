@@ -8,16 +8,16 @@
 import UIKit
 
 /// 渐变方向
-public enum LDPradientType{
-    case LeftToRight
-    case TopToDown
+public enum LDPradientType:NSInteger{
+    case LeftToRight = 0
+    case TopToDown = 1
 }
 
 //进度条类型
-public enum LDProgressStyle{
-    case normal //普通
-    case gradient //渐变
-    case none
+public enum LDProgressStyle:NSInteger{
+    case normal = 0 //普通
+    case gradient = 1 //渐变
+    case none = -1
 }
 
 /// 线性进度条
