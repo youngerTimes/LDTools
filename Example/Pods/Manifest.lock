@@ -1,9 +1,6 @@
 PODS:
   - Differentiator (5.0.0)
   - EmptyDataSet-Swift (5.0.0)
-  - FMDB (2.7.5):
-    - FMDB/standard (= 2.7.5)
-  - FMDB/standard (2.7.5)
   - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.6)
   - Kingfisher (4.10.1)
@@ -370,14 +367,12 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
-  - FMDB
   - LDTools-Swift (from `../`)
 
 SPEC REPOS:
   trunk:
     - Differentiator
     - EmptyDataSet-Swift
-    - FMDB
     - HandyJSON
     - IQKeyboardManagerSwift
     - Kingfisher
@@ -399,7 +394,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
-  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
@@ -415,6 +409,6 @@ SPEC CHECKSUMS:
   SwifterSwift: a9e8e144832638c2850b43da5feaf9598c6ad65b
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: a69beae79bdfe4ce17220a94ee9c457410ef051e
+PODFILE CHECKSUM: 676f09c627aa35d073ce6e73d8c9f90d1920c6ba
 
 COCOAPODS: 1.10.0.beta.2
