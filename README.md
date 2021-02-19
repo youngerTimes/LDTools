@@ -19,6 +19,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'LDTools-Swift'
 ```
+### install at location
+```ruby
+pod 'LDTools-Swift',:path=>'/Users/Shared/XiLaida-SwiftFrame/LDTools-Swift'
+```
 
 ## Author
 

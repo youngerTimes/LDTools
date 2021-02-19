@@ -38,15 +38,15 @@ TODO: Add long description of the pod here.
 
   s.dependency 'SnapKit'
   s.dependency 'QMUIKit'
-  s.dependency 'IQKeyboardManagerSwift'
+#  s.dependency 'IQKeyboardManagerSwift'
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
-  s.dependency 'RxDataSources'
+#  s.dependency 'RxDataSources'
   s.dependency 'MJRefresh'
-  s.dependency 'HandyJSON'
-  s.dependency 'Kingfisher'
-  s.dependency 'EmptyDataSet-Swift'
-  s.dependency 'SwifterSwift'
+#  s.dependency 'HandyJSON'
+#  s.dependency 'Kingfisher'
+#  s.dependency 'EmptyDataSet-Swift'
+#  s.dependency 'SwifterSwift'
   s.dependency 'XCGLogger'
   
   # s.resource_bundles = {

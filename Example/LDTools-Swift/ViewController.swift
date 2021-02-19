@@ -43,12 +43,10 @@ class ViewController: LD_BaseVC {
         vCItems.append(ItemsVC(title: "网页加载控制器", VC: LD_WebVC.self))
         vCItems.append(ItemsVC(title: "Base_下拉刷新，上拉加载", VC: RefreshTableViewController.self))
         vCItems.append(ItemsVC(title: "引导图", VC: GuideVC.self))
-        vCItems.append(ItemsVC(title: "Banner", VC: BannerDemo.self))
 
         viewItems.append(ItemsVC(title: "下拉菜单", VC: MenuVC.self))
         viewItems.append(ItemsVC(title: "二维码", VC: CreateQRVC.self))
         viewItems.append(ItemsVC(title: "滚动数字", VC: RollDigitVC.self))
-        viewItems.append(ItemsVC(title: "星星滑动", VC: StarRateVC.self))
 
         toolsItems.append(ItemsVC(title: "导航(自适应百度，高德，原生)", VC: MapNavVC.self))
 
