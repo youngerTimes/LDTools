@@ -11,19 +11,20 @@ import XCGLogger
 //https://github.com/DaveWoodCom/XCGLogger
 //https://www.hangge.com/blog/cache/detail_1418.html
 
-/**
-```
-         log.verbose("一条verbose级别消息：程序执行时最详细的信息。")
-         log.debug("一条debug级别消息：用于代码调试。")
-         log.info("一条info级别消息：常用与用户在console.app中查看。")
-         log.warning("一条warning级别消息：警告消息，表示一个可能的错误。")
-         log.error("一条error级别消息：表示产生了一个可恢复的错误，用于告知发生了什么事情。")
-         log.severe("一条severe error级别消息：表示产生了一个严重错误。程序可能很快会奔溃。")
-```
- */
-
-//public let XCGLoggerTags = XCGLogger.Constants.userInfoKeyTags
-
+///
+///```
+///         log.verbose("一条verbose级别消息：程序执行时最详细的信息。")
+///         log.debug("一条debug级别消息：用于代码调试。")
+///         log.info("一条info级别消息：常用与用户在console.app中查看。")
+///         log.warning("一条warning级别消息：警告消息，表示一个可能的错误。")
+///         log.error("一条error级别消息：表示产生了一个可恢复的错误，用于告知发生了什么事情。")
+///         log.severe("一条severe error级别消息：表示产生了一个严重错误。程序可能很快会奔溃。")
+///```
+///
+/// ```
+/// public let XCGLoggerTags = XCGLogger.Constants.userInfoKeyTags
+/// ```
+///
 /// 设置XCGLogger
 /// - Parameters:
 ///   - path: 日志文件名【包括后缀.txt】 默认log.txt
@@ -53,11 +54,11 @@ public func LD_SetUpLogger(_ path:String = "log.txt",showIdentifier:Bool = false
 
     systemDestination.showLogIdentifier = showIdentifier
     systemDestination.showFunctionName = showFunctionName
-    systemDestination.showThreadName = true
-    systemDestination.showLevel = true
-    systemDestination.showFileName = true
-    systemDestination.showLineNumber = true
-    systemDestination.showDate = true
+    systemDestination.showThreadName = showThreadName
+    systemDestination.showLevel = showLevel
+    systemDestination.showFileName = showFileName
+    systemDestination.showLineNumber = showLineNumber
+    systemDestination.showDate = showDate
 
     //logger对象中添加控制台输出
     log.add(destination: systemDestination)
@@ -92,13 +93,13 @@ public func LD_SetUpLogger(_ path:String = "log.txt",showIdentifier:Bool = false
     #else
     fileDestination.outputLevel = .severe
     #endif
-    fileDestination.showLogIdentifier = true
-    fileDestination.showFunctionName = true
-    fileDestination.showThreadName = true
-    fileDestination.showLevel = true
-    fileDestination.showFileName = true
-    fileDestination.showLineNumber = true
-    fileDestination.showDate = true
+    fileDestination.showLogIdentifier = showIdentifier
+    fileDestination.showFunctionName = showFunctionName
+    fileDestination.showThreadName = showThreadName
+    fileDestination.showLevel = showLevel
+    fileDestination.showFileName = showFileName
+    fileDestination.showLineNumber = showLineNumber
+    fileDestination.showDate = showDate
 
     //文件输出在后台处理
     fileDestination.logQueue = XCGLogger.logQueue

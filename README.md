@@ -20,13 +20,17 @@ it, simply add the following line to your Podfile:
 pod 'LDTools-Swift'
 ```
 ### install at location
+> Put `LDTools-X` Object at `/Users/Shared` path when you Pull and copy following code to Podfile
+
 ```ruby
 pod 'LDTools-Swift',:path=>'/Users/Shared/XiLaida-SwiftFrame/LDTools-Swift'
 ```
 
 ## Author
 
-841720330@qq.com, 841720330@qq.com
+younger_times, 841720330@qq.com
+
+[How to create own Pod ?](https://www.jianshu.com/p/08c59604e63c)
 
 ## License
 

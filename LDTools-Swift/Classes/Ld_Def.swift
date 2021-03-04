@@ -12,6 +12,10 @@ import RxCocoa
 import RxDataSources
 import MJRefresh
 
+#if canImport(XCGLogger) && !os(watchOS)
+import XCGLogger
+#endif
+
 
 // MARK: -- ENUM
 public enum LD_RefreshStatus {
@@ -74,6 +78,11 @@ extension LD_Refreshable {
 }
 
 // MARK: -- Unit Property
+/// 获取LD_Tools当前版本
+public let LD_ToolsVersion:String = {
+    return Bundle(for: LDTools.self).infoDictionary?["CFBundleShortVersionString"] ?? ""
+}() as! String
+
 /// 屏幕宽度
 public let LD_ScreenW = UIScreen.main.bounds.size.width
 
@@ -135,6 +144,12 @@ public var LD_IsPhone: Bool{
 /// 是否是Pad
 public var LD_IsPad:Bool{
     get{return UIDevice.current.userInterfaceIdiom == .pad}
+}
+
+public var LD_Logger:XCGLogger{
+    get{
+        return LD_SetUpLogger(showIdentifier: true, showFunctionName: true, showThreadName: true, showLevel: true, showFileName: true, showLineNumber: true, showDate: true)
+    }
 }
 
 /// Rx-DisposeBag

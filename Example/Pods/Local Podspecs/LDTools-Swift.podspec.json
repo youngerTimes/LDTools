@@ -1,6 +1,6 @@
 {
   "name": "LDTools-Swift",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "喜望软件：iOS集合开发包(Swift)",
   "swift_versions": "5.0",
   "description": "TODO: Add long description of the pod here.",
@@ -10,11 +10,11 @@
     "file": "LICENSE"
   },
   "authors": {
-    "841720330@qq.com": "841720330@qq.com"
+    "younger_times": "841720330@qq.com"
   },
   "source": {
     "git": "http://yangk@sinata.cn:10101/gitblit/r/ios/SwiftFrame.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "10.0"
@@ -32,9 +32,6 @@
     "QMUIKit": [
 
     ],
-    "IQKeyboardManagerSwift": [
-
-    ],
     "RxSwift": [
 
     ],
@@ -44,19 +41,13 @@
     "RxDataSources": [
 
     ],
+    "EmptyDataSet-Swift": [
+
+    ],
     "MJRefresh": [
 
     ],
     "HandyJSON": [
-
-    ],
-    "Kingfisher": [
-
-    ],
-    "EmptyDataSet-Swift": [
-
-    ],
-    "SwifterSwift": [
 
     ],
     "XCGLogger": [

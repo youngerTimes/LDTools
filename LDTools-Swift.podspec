@@ -25,7 +25,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'http://www.sinata.cn'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '841720330@qq.com' => '841720330@qq.com' }
+  s.author           = { 'younger_times' => '841720330@qq.com' }
   s.source           = { :git => 'http://yangk@sinata.cn:10101/gitblit/r/ios/SwiftFrame.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -38,15 +38,12 @@ TODO: Add long description of the pod here.
 
   s.dependency 'SnapKit'
   s.dependency 'QMUIKit'
-#  s.dependency 'IQKeyboardManagerSwift'
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
-#  s.dependency 'RxDataSources'
+  s.dependency 'RxDataSources'
+  s.dependency 'EmptyDataSet-Swift'
   s.dependency 'MJRefresh'
-#  s.dependency 'HandyJSON'
-#  s.dependency 'Kingfisher'
-#  s.dependency 'EmptyDataSet-Swift'
-#  s.dependency 'SwifterSwift'
+  s.dependency 'HandyJSON'
   s.dependency 'XCGLogger'
   
   # s.resource_bundles = {
