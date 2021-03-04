@@ -30,7 +30,14 @@ public protocol LD_Refreshable {
     var refreshStatus: BehaviorSubject<LD_RefreshStatus> { get }
 }
 extension LD_Refreshable {
+    /// 下拉刷新绑定
+    /// - Parameters:
+    ///   - scrollView: 被绑定的 UIScrollView 或 UITableView
+    ///   - header: 头部
+    ///   - footer: 尾部
+    /// - Returns: 返回Rx
     @discardableResult
+
     public func refreshStatusBind(to scrollView: UIScrollView, _ header: (() -> Void)? = nil, _ footer: (() -> Void)? = nil) -> Disposable {
 
         if header != nil {
@@ -131,6 +138,7 @@ public var LD_IsPad:Bool{
     get{return UIDevice.current.userInterfaceIdiom == .pad}
 }
 
+/// Rx-DisposeBag
 public var LD_disposeBag = DisposeBag()
 
 

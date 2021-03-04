@@ -7,15 +7,13 @@
 
 import Foundation
 /// 自定义Nav
-/**
-
- 隐藏Nav栏,在AppDelegate 中的hiddenVCs 添加VC的id
- ```
- if let nav = self.window?.rootViewController as? JQ_BaseNavigationController{
-     nav.hiddenVCs.append(CityPickerVC.jq_identity)
- }
- ```
- */
+/// 隐藏Nav栏,在AppDelegate 中的hiddenVCs 添加VC的id
+///```
+///if let nav = self.window?.rootViewController as? JQ_BaseNavigationController{
+///    nav.hiddenVCs.append(CityPickerVC.jq_identity)
+///}
+///```
+///
 open class LD_BaseNavigationController:  UINavigationController, UINavigationControllerDelegate {
     public var lastVc: UIViewController!
     /// 隐藏nav

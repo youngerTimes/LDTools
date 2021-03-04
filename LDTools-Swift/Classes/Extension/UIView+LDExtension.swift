@@ -104,6 +104,7 @@ public extension UIView{
         maskLayer.frame = self.bounds
         maskLayer.path = maskPath.cgPath
         maskLayer.masksToBounds = false
+        maskLayer.shouldRasterize = true
         self.layer.mask = maskLayer
     }
     ///切部分圆角(Xib)
@@ -112,6 +113,7 @@ public extension UIView{
         let maskLayer = CAShapeLayer()
         maskLayer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         maskLayer.path = maskPath.cgPath
+        maskLayer.shouldRasterize = true
         self.layer.mask = maskLayer
     }
 

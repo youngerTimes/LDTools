@@ -228,7 +228,7 @@ public extension String{
         return (0,0)
     }
 
-
+/// 根据脚标获取子串
     subscript(start:Int, length:Int) -> String{
         get{
             let index1 = self.index(self.startIndex, offsetBy: start)
@@ -552,6 +552,12 @@ public extension String{
         return size
     }
 
+
+    /// 字符串加密
+    /// - Parameters:
+    ///   - algorithm: 加密方式
+    ///   - key: 加密的key
+    /// - Returns: 返回加密结果
     func ld_hmac(algorithm: HMACAlgorithm, key: String) -> String {
         let cKey = key.cString(using: String.Encoding.utf8)
         let cData = self.cString(using: String.Encoding.utf8)
@@ -674,7 +680,7 @@ document.createElement('meta');script.name = 'viewport';script.content=\"width=d
         return string_NS.length
     }
 
-
+    /// 是否是IP地址
     var ld_isIP:Bool{
         let pattern = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
         let pred = NSPredicate(format: "SELF MATCHES %@", pattern)
@@ -687,6 +693,7 @@ document.createElement('meta');script.name = 'viewport';script.content=\"width=d
         return self.ld_stringByReplaceUnicode
     }
 
+    /// unicode编码
     var ld_stringByReplaceUnicode : String{
         let tempStr1 = self.replacingOccurrences(of: "\\u", with: "\\U")
         let tempStr2 = tempStr1.replacingOccurrences(of: "\"", with: "\\\"")
