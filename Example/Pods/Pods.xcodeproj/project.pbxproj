@@ -86,6 +86,18 @@
 		128D8F3A4F1D14F67B3798AD47854AEB /* Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E5FF6AFC5B9FAEF6D2317DF27DF78 /* Throttle.swift */; };
 		129954A731081299DC713F74884F8D7E /* QMUIThemeManagerCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 49440BE75142588D2C4475E862F8FD66 /* QMUIThemeManagerCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12D0BE95D4E1CEA678A03626232523C6 /* PrePostFixLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5449DF93D08E16A845BA2E9BB895EE43 /* PrePostFixLogFormatter.swift */; };
+		13A393DC25F0760B009451F1 /* AttributeString+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A393DB25F0760B009451F1 /* AttributeString+LDExtension.swift */; };
+		13A393F125F07633009451F1 /* AVURLAsset+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A393F025F07633009451F1 /* AVURLAsset+LDExtension.swift */; };
+		13A3940625F07676009451F1 /* CALayer+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3940525F07676009451F1 /* CALayer+LDExtension.swift */; };
+		13A3941B25F07721009451F1 /* Double+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3941A25F07721009451F1 /* Double+LDExtension.swift */; };
+		13A3943025F07786009451F1 /* NSInteger+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3942F25F07786009451F1 /* NSInteger+LDExtension.swift */; };
+		13A3944525F077D9009451F1 /* UIDevice+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3944425F077D9009451F1 /* UIDevice+LDExtension.swift */; };
+		13A3945A25F0784B009451F1 /* UILabel+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3945925F0784B009451F1 /* UILabel+LDExtension.swift */; };
+		13A3946F25F07A66009451F1 /* UITextFiled+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3946E25F07A66009451F1 /* UITextFiled+LDExtension.swift */; };
+		13A3948425F07AE9009451F1 /* URL+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3948325F07AE9009451F1 /* URL+LDExtension.swift */; };
+		13A3949925F07B1D009451F1 /* WKWebView+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3949825F07B1D009451F1 /* WKWebView+LDExtension.swift */; };
+		13A394B025F07CE7009451F1 /* LD_ImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A394AE25F07CE7009451F1 /* LD_ImagePreviewVC.swift */; };
+		13A394B125F07CE7009451F1 /* LD_ImagePreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A394AF25F07CE7009451F1 /* LD_ImagePreviewCell.swift */; };
 		13E640A525EF91CF004AA787 /* Array+LDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E640A425EF91CF004AA787 /* Array+LDExtension.swift */; };
 		1411DB25950D876BD4F1459DA8B6ABBD /* UIImage+QMUI.h in Headers */ = {isa = PBXBuildFile; fileRef = DEE9C3B83551CA1AC5A398B183FC56BD /* UIImage+QMUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		144DA31695B5C0A2836D7CB1E2A1F8D6 /* MutableCollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E5D10D468772024F2F3F73B41023C8 /* MutableCollectionExtensions.swift */; };
@@ -1331,6 +1343,18 @@
 		12FE4AE5753B4DAA1667412DDACD41C2 /* QMUITableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QMUITableViewCell.h; path = QMUIKit/QMUIComponents/QMUITableViewCell.h; sourceTree = "<group>"; };
 		130D6A4075E1747EB50887FA36ED9A2F /* Binder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Binder.swift; path = RxSwift/Binder.swift; sourceTree = "<group>"; };
 		132542BF1659F5DBDAA061E8B72DCCC6 /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshNormalHeader.m; path = MJRefresh/Custom/Header/MJRefreshNormalHeader.m; sourceTree = "<group>"; };
+		13A393DB25F0760B009451F1 /* AttributeString+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributeString+LDExtension.swift"; sourceTree = "<group>"; };
+		13A393F025F07633009451F1 /* AVURLAsset+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVURLAsset+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3940525F07676009451F1 /* CALayer+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3941A25F07721009451F1 /* Double+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3942F25F07786009451F1 /* NSInteger+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSInteger+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3944425F077D9009451F1 /* UIDevice+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3945925F0784B009451F1 /* UILabel+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3946E25F07A66009451F1 /* UITextFiled+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextFiled+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3948325F07AE9009451F1 /* URL+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+LDExtension.swift"; sourceTree = "<group>"; };
+		13A3949825F07B1D009451F1 /* WKWebView+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+LDExtension.swift"; sourceTree = "<group>"; };
+		13A394AE25F07CE7009451F1 /* LD_ImagePreviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LD_ImagePreviewVC.swift; sourceTree = "<group>"; };
+		13A394AF25F07CE7009451F1 /* LD_ImagePreviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LD_ImagePreviewCell.swift; sourceTree = "<group>"; };
 		13CA114887AA1DAC0AFEC334A57AE4C3 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIButtonExtensions.swift; path = Sources/SwifterSwift/UIKit/UIButtonExtensions.swift; sourceTree = "<group>"; };
 		13D68A7E20070EAB63D3A2094822F5E9 /* UIScrollView+LDExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScrollView+LDExtension.swift"; sourceTree = "<group>"; };
 		13E640A425EF91CF004AA787 /* Array+LDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+LDExtension.swift"; sourceTree = "<group>"; };
@@ -2646,6 +2670,15 @@
 			path = "../Target Support Files/HandyJSON";
 			sourceTree = "<group>";
 		};
+		13A394AD25F07CE7009451F1 /* ImgPreviewVC */ = {
+			isa = PBXGroup;
+			children = (
+				13A394AE25F07CE7009451F1 /* LD_ImagePreviewVC.swift */,
+				13A394AF25F07CE7009451F1 /* LD_ImagePreviewCell.swift */,
+			);
+			path = ImgPreviewVC;
+			sourceTree = "<group>";
+		};
 		13B277834FF9C59325806A901199B3E9 /* QMUITableViewProtocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -3498,6 +3531,7 @@
 		7298DCDBA6461D97F83EA26BE58835BC /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				13A394AD25F07CE7009451F1 /* ImgPreviewVC */,
 				554F0B4C7A8315883E216FEFBB85C625 /* VC */,
 				75E05D99CE346E38B5696C76276AE4F0 /* View */,
 			);
@@ -4058,6 +4092,16 @@
 				98089BBD12654A0FD7E17CA14E200DF3 /* UIView+LDExtension.swift */,
 				E7A5A351737296465B142EB028B38F2B /* UIViewController+LDExtension.swift */,
 				13E640A425EF91CF004AA787 /* Array+LDExtension.swift */,
+				13A393DB25F0760B009451F1 /* AttributeString+LDExtension.swift */,
+				13A393F025F07633009451F1 /* AVURLAsset+LDExtension.swift */,
+				13A3940525F07676009451F1 /* CALayer+LDExtension.swift */,
+				13A3941A25F07721009451F1 /* Double+LDExtension.swift */,
+				13A3942F25F07786009451F1 /* NSInteger+LDExtension.swift */,
+				13A3944425F077D9009451F1 /* UIDevice+LDExtension.swift */,
+				13A3945925F0784B009451F1 /* UILabel+LDExtension.swift */,
+				13A3946E25F07A66009451F1 /* UITextFiled+LDExtension.swift */,
+				13A3948325F07AE9009451F1 /* URL+LDExtension.swift */,
+				13A3949825F07B1D009451F1 /* WKWebView+LDExtension.swift */,
 			);
 			name = Extension;
 			path = "LDTools-Swift/Classes/Extension";
@@ -6267,30 +6311,42 @@
 				4808EE290D73D7B1CF04601CBDABCD9E /* LD_LocationTool.swift in Sources */,
 				13E640A525EF91CF004AA787 /* Array+LDExtension.swift in Sources */,
 				5E688B8EEA4AD3E242E7E863B54F4E41 /* LD_MenuView.swift in Sources */,
+				13A393F125F07633009451F1 /* AVURLAsset+LDExtension.swift in Sources */,
 				AE646564C2561388A99F33F1E67946CE /* LD_OProgressView.swift in Sources */,
 				D94802962A581B39F0B4F9D4D8C50087 /* LD_PhoneField.swift in Sources */,
 				1C9D81176B761B1CB63A46CBC394DFF5 /* LD_RefreshTVC.swift in Sources */,
 				C4A7672B48F6168C5162488718864B77 /* LD_RegexTool.swift in Sources */,
+				13A394B125F07CE7009451F1 /* LD_ImagePreviewCell.swift in Sources */,
 				7F56A9023112FF4ACF167A748B132B45 /* LD_RollNumberLabel.swift in Sources */,
 				8A033FB1D40B2D4F8175E162F91DD50D /* LD_WebVC.swift in Sources */,
+				13A3945A25F0784B009451F1 /* UILabel+LDExtension.swift in Sources */,
 				68A3A6C420A52DAE46B6C3D0DB4F2687 /* LD_XCGLoggerTool.swift in Sources */,
 				B7CDF8DA97006197AAAE358D8549D77D /* LDGuideVC.swift in Sources */,
 				0D9AC303A9E27E4525660B2804FA7C17 /* LDProgressView.swift in Sources */,
+				13A3948425F07AE9009451F1 /* URL+LDExtension.swift in Sources */,
 				5B087574263F1D17B028ABED45451EBA /* LDRollDigitLabel.swift in Sources */,
 				D45B24BF14C4BDCC9015D8F0ACBACC3E /* LDTools-Swift-dummy.m in Sources */,
+				13A394B025F07CE7009451F1 /* LD_ImagePreviewVC.swift in Sources */,
 				79621E6DA056000F954429797517D52A /* LDTools.swift in Sources */,
 				B17217C1FBE8DCF56F662C08DA842FF2 /* NSLayoutConstraint+LDExtension.swift in Sources */,
 				8A6EFB20126C10E303EF5214A6F4BEA9 /* NSObject+LDExtension.swift in Sources */,
 				830ED6E1B01CE7B4DE5BA80A93809FFC /* String+LDExtension.swift in Sources */,
+				13A3943025F07786009451F1 /* NSInteger+LDExtension.swift in Sources */,
 				D470783F74E0270E1996133171FF3F57 /* UIButton+LDExtension.swift in Sources */,
+				13A3944525F077D9009451F1 /* UIDevice+LDExtension.swift in Sources */,
+				13A3946F25F07A66009451F1 /* UITextFiled+LDExtension.swift in Sources */,
 				76CDB0623EEAFEC410A6248FF099CAFD /* UIColor+LDExtension.swift in Sources */,
 				46C18D9B71D8B7E25FC9447D1FC29E9C /* UIImage+LDExtension.swift in Sources */,
+				13A3949925F07B1D009451F1 /* WKWebView+LDExtension.swift in Sources */,
 				4ECD0EE8D778954C2E2F1C1625E9B59E /* UIImageView+LDExtension.swift in Sources */,
 				B1831F9473EAE496711BB080DB864EDD /* UINavigationController+LDExtension.swift in Sources */,
 				F3514B200A6D5EEBDCF67239D5B034A8 /* UIScrollView+LDExtension.swift in Sources */,
 				8A48EFDD6CC8133514FBEF920A6CB2AC /* UITableView+LDExtension.swift in Sources */,
+				13A393DC25F0760B009451F1 /* AttributeString+LDExtension.swift in Sources */,
 				D156582F8D2E34A1EA3BE114C910787A /* UITextView+LDExtension.swift in Sources */,
+				13A3940625F07676009451F1 /* CALayer+LDExtension.swift in Sources */,
 				34F95F4FCBC30B9514AE9587D21E772D /* UIView+LDExtension.swift in Sources */,
+				13A3941B25F07721009451F1 /* Double+LDExtension.swift in Sources */,
 				B1F8BA7E772AD213B32EDDA6E7F271AC /* UIViewController+LDExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

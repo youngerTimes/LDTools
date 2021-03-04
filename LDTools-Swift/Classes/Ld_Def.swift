@@ -29,6 +29,7 @@ public enum LD_RefreshStatus {
 public protocol LD_Refreshable {
     var refreshStatus: BehaviorSubject<LD_RefreshStatus> { get }
 }
+
 extension LD_Refreshable {
     /// 下拉刷新绑定
     /// - Parameters:
@@ -71,8 +72,6 @@ extension LD_Refreshable {
         })
     }
 }
-
-
 
 // MARK: -- Unit Property
 /// 屏幕宽度
@@ -172,6 +171,26 @@ public func LD_currentNavigationController() -> UINavigationController {
     return LD_currentViewController().navigationController!
 }
 
+///关联Associate封装
+///```extension Kingfisher where Base: Image {
+///     fileprivate(set) var images: [Image]? {
+///         get {
+///             return objc_getAssociatedObject(base, &imagesKey) as? [Image]
+///         }
+///         set {
+///             objc_setAssociatedObject(base, &imagesKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+///         }
+///     }
+///}
+///```
+///
+public func jq_getAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer) -> T? {
+    return objc_getAssociatedObject(object, key) as? T
+}
+
+public func jq_setRetainedAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer, _ value: T) {
+    objc_setAssociatedObject(object, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+}
 
 /// 动态加载VC
 public func LD_loadVC(string:String)->UIViewController?{
