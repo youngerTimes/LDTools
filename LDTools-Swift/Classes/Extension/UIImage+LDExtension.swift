@@ -782,7 +782,7 @@ public extension UIImage{
         if colors.count == 1 {
             return UIImage.ld_image(color: colors[0])
         }
-        UIGraphicsBeginImageContext(size)
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         let context = UIGraphicsGetCurrentContext()
         let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: size.width, height: size.height), cornerRadius: radius)
         path.addClip()

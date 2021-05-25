@@ -53,14 +53,23 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
         }
     }
 
+    /// 重置颜色
+    /// - Parameters:
+    ///   - color: 颜色
+    ///   - style: 类型
+    public func ld_resetTincolor(_ color:UIColor,style:UIActivityIndicatorView.Style){
+        (scrollView?.mj_header as! MJRefreshNormalHeader).stateLabel?.textColor = color
+        (scrollView?.mj_header as! MJRefreshNormalHeader).loadingView?.style = style
+        (scrollView?.mj_footer as! MJRefreshBackNormalFooter).stateLabel?.textColor = color
+        (scrollView?.mj_footer as! MJRefreshBackNormalFooter).loadingView?.style = style
+    }
+
     /// 设置空数据时，背景图
     /// - Parameters:
     ///   - tableView: 被添加的UITableView
     ///   - noticeStr: 提示内容
     ///   - clouse: DataSetView需要重新定义
-    public func ld_setEmptyView(_ tableView:UITableView, _ noticeStr:String? = nil,image:UIImage? = nil,bgColor:UIColor = UIColor.white,clouse:((EmptyDataSetView)->Void)? = nil) {
-
-        tableView.separatorStyle = .none
+    public func ld_setEmptyView(_ tableView:UIScrollView, _ noticeStr:String? = nil,image:UIImage? = nil,bgColor:UIColor = UIColor.white,clouse:((EmptyDataSetView)->Void)? = nil) {
 
         unowned let weakSelf = self
         tableView.emptyDataSetView { (emptyDataSetView) in
@@ -86,6 +95,8 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
     ///   - footer: 是否有上拉加载
     public func ld_addReresh(_ scrollView:UIScrollView, footer: Bool) {
         self.scrollView = scrollView
+        ld_setEmptyView(scrollView)
+
         if scrollView.mj_header != nil {
             return
         }
