@@ -18,6 +18,7 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
     public var lastVc: UIViewController!
     /// 隐藏nav
     public var hiddenNavVCs = [String]()
+    private var popDelegate: UIGestureRecognizerDelegate?
 
     //标题颜色
     public var titleTextAttributes:[NSAttributedString.Key : Any]?{
@@ -46,6 +47,7 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
         self.navigationBar.tintColor = UIColor.black
         self.navigationBar.shadowImage = UIImage()
         self.delegate = self
+        self.popDelegate = self.interactivePopGestureRecognizer?.delegate
     }
 
     public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
@@ -64,6 +66,15 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
 
         self.setNavigationBarHidden(hidden, animated: animated)
         self.lastVc = viewController
+    }
+
+    //侧滑
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if  viewController == self.viewControllers[0] {
+            self.interactivePopGestureRecognizer!.delegate = self.popDelegate
+        }else{
+            self.interactivePopGestureRecognizer!.delegate = nil
+        }
     }
 
     public override var childForStatusBarHidden: UIViewController? {

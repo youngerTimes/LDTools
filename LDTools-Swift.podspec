@@ -45,6 +45,10 @@ TODO: Add long description of the pod here.
   s.dependency 'MJRefresh'
   s.dependency 'HandyJSON'
   s.dependency 'XCGLogger'
+  s.dependency 'VTMagic'
+  s.dependency 'SVProgressHUD'
+  s.dependency 'IQKeyboardManager'
+  s.dependency 'TZImagePickerController'
   
   # s.resource_bundles = {
   #   'LDTools-Swift' => ['LDTools-Swift/Assets/*.png']

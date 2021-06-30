@@ -20,6 +20,7 @@ import UIKit
 open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
     public var page = 1 //当前页数
     public var totalPages = -1 //总页数
+    public var items = [Any]()
     private var scrollView:UIScrollView?
 
     public let refreshStatus = BehaviorSubject(value: LD_RefreshStatus.others)
@@ -73,7 +74,7 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
 
         unowned let weakSelf = self
         tableView.emptyDataSetView { (emptyDataSetView) in
-            emptyDataSetView.titleLabelString(NSAttributedString.init(string: (noticeStr != nil) ? noticeStr! : "暂无数据", attributes: [.font:UIFont.systemFont(ofSize: 16), .foregroundColor:bgColor as Any]))
+            emptyDataSetView.titleLabelString(NSAttributedString.init(string: (noticeStr != nil) ? noticeStr! : "暂无数据", attributes: [.font:UIFont.systemFont(ofSize: 14,weight: .medium), .foregroundColor:bgColor as Any]))
                 .image(image)
                 .dataSetBackgroundColor(UIColor.white)
                 .verticalOffset(0)

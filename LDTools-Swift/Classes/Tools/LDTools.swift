@@ -96,6 +96,31 @@ public class LDTools:NSObject{
         dispatchQueue.asyncAfter(deadline: DispatchTime.now() + delayTime, execute: closure)
     }
 
+    ///开启倒计时
+    public static func openCountDown(sender: UIButton,_ timeOver:(()->Void)? = nil) {
+        var time = 59 //倒计时时间
+        let queue = DispatchQueue.global()
+        let timer = DispatchSource.makeTimerSource(flags: [], queue: queue)
+        timer.schedule(wallDeadline: DispatchWallTime.now(), repeating: .seconds(1));
+        timer.setEventHandler(handler: {
+            if time <= 0 {
+                timer.cancel()
+                DispatchQueue.main.async(execute: {
+                    sender.setTitle("获取验证码", for: .normal)
+                    sender.isUserInteractionEnabled = true
+                    timeOver?()
+                });
+            }else {
+                DispatchQueue.main.async(execute: {
+                    sender.setTitle("\(time)s", for: .normal)
+                    sender.isUserInteractionEnabled = false
+                });
+            }
+            time -= 1
+        });
+        timer.resume()
+    }
+
 
     /// 版本信息
     public static func currentVersion()->String{
@@ -107,6 +132,22 @@ public class LDTools:NSObject{
         version = info!["CFBundleShortVersionString"]  as! String
         #endif
         return version
+    }
+
+    public static func alert(title:String,message:String?,cancelStr:String,sureStr:String, clouse: @escaping (Int)->Void){
+        let alertVC = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: cancelStr, style: .cancel) { action in
+            clouse(0)
+        }
+
+        let subAction = UIAlertAction(title: sureStr, style: .default) { action in
+            clouse(1)
+        }
+
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(subAction)
+        LD_currentViewController().present(alertVC, animated: true, completion: nil)
+
     }
 
 
@@ -131,6 +172,14 @@ public class LDTools:NSObject{
                 }
             }
             task.resume()
+        }
+    }
+
+
+    /// 跳转至AppStore检查更新等
+    public static func jumpAppStore(appid:String){
+        if let url = URL(string: "itms-apps://itunes.apple.com/cn/app/id\(appid)"){
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }

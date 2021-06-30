@@ -12,11 +12,6 @@ import RxCocoa
 import RxDataSources
 import MJRefresh
 
-#if canImport(XCGLogger) && !os(watchOS)
-import XCGLogger
-#endif
-
-
 // MARK: -- ENUM
 public enum LD_RefreshStatus {
     case none
@@ -234,4 +229,6 @@ public func LD_loadVC(string:String)->UIViewController?{
     return nil
 }
 
-
+#if canImport(XCGLogger) && !os(watchOS)
+import XCGLogger
+#endif

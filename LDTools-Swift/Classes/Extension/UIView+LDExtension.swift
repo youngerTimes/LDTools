@@ -16,6 +16,50 @@ public enum LD_DottedLineType {
 public extension UIView{
 
     // MARK: Property
+
+    // 边线的宽度
+    @IBInspectable var ld_borderWidthXIB: CGFloat {
+        get {
+            return self.layer.borderWidth
+        }
+        set {
+            self.layer.borderWidth = newValue
+        }
+    }
+
+    // 边线的颜色
+    @IBInspectable var ld_borderColorXIB: UIColor {
+        get {
+            guard let borderColor = self.layer.borderColor else {
+                return UIColor.clear
+            }
+            return UIColor(cgColor: borderColor)
+        }
+        set {
+            self.layer.borderColor = newValue.cgColor
+        }
+    }
+
+    // 子图层超出部分是否裁剪
+    @IBInspectable var ld_maskToBoundsXIB: Bool {
+        get {
+            return self.layer.masksToBounds
+        }
+        set {
+            self.layer.masksToBounds = newValue
+        }
+    }
+
+    // 圆角
+    @IBInspectable var ld_cornerRadiusXIB: CGFloat {
+        get {
+            return self.layer.cornerRadius
+        }
+        set {
+            self.layer.cornerRadius = newValue
+        }
+    }
+
     var ld_identity:String{
         get{return "\(type(of: self))"}
     }
@@ -214,10 +258,12 @@ public extension UIView{
     }
 
     ///设置渐变色(Frame)
-    func ld_gradientColor(colorArr:[CGColor]) {
+    func ld_gradientColor(colorArr:[CGColor],cornerRadius:CGFloat = 0) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = colorArr
+        gradientLayer.cornerRadius = cornerRadius
+        if cornerRadius > 0 {gradientLayer.masksToBounds = true}
         gradientLayer.startPoint = CGPoint(x: 0, y: 1)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         self.layer.insertSublayer(gradientLayer, at: 0)
@@ -225,12 +271,14 @@ public extension UIView{
 
     ///设置渐变色(Nib)
     @discardableResult
-    func ld_gradientNibColor(colorArr:[CGColor]) -> CAGradientLayer? {
+    func ld_gradientNibColor(colorArr:[CGColor],cornerRadius:CGFloat = 0) -> CAGradientLayer? {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRect(x: 0, y: 0, width: self.frame.width*LD_RateW, height: self.frame.height*LD_RateH)
         gradientLayer.colors = colorArr
         gradientLayer.startPoint = CGPoint(x: 0, y: 1)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.cornerRadius = cornerRadius
+        if cornerRadius > 0 {gradientLayer.masksToBounds = true}
         self.layer.insertSublayer(gradientLayer, at: 0)
         return gradientLayer
     }
