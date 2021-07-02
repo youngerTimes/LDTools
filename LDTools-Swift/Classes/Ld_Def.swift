@@ -61,6 +61,7 @@ extension LD_Refreshable {
         return refreshStatus.subscribe(onNext: { (status) in
             switch status {
                 case .beingHeaderRefresh:
+                    scrollView.mj_footer!.resetNoMoreData()
                     scrollView.mj_header!.beginRefreshing()
                     break
                 case .endHeaderRefresh:
@@ -85,6 +86,32 @@ extension LD_Refreshable {
 }
 
 // MARK: -- Unit Property
+
+
+public func LD_ShowError(errorStr:String) {
+    LD_HideAllView()
+    QMUITips.showError(errorStr, in: LD_KeyWindow, hideAfterDelay: 2.0)
+}
+///显示成功
+public func LD_ShowSuccuss(succussStr:String) {
+    LD_HideAllView()
+    QMUITips.showSucceed(succussStr, in: LD_KeyWindow, hideAfterDelay: 2.0)
+}
+///普通显示
+public func LD_ShowText(textStr:String) {
+    LD_HideAllView()
+    QMUITips.show(withText: textStr, in: LD_KeyWindow, hideAfterDelay: 2.0)
+}
+///loading
+public func LD_ShowLoading(loadingStr:String) {
+    LD_HideAllView()
+    QMUITips.showLoading(loadingStr, in: LD_KeyWindow)
+}
+///隐藏所有活动的弹框
+public func LD_HideAllView() {
+    QMUITips.hideAllToast(in: LD_KeyWindow, animated: true)
+}
+
 /// 获取LD_Tools当前版本
 public let LD_ToolsVersion:String = {
     return Bundle(for: LDTools.self).infoDictionary?["CFBundleShortVersionString"] ?? ""

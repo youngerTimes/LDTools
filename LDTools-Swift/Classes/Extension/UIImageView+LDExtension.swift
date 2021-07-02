@@ -6,8 +6,18 @@
 //
 
 import Foundation
+import SDWebImage
 
 public extension UIImageView{
+
+    func ld_load(url: String,opt:SDWebImageOptions? = nil, placeHolder: UIImage){
+        if opt != nil {
+            self.sd_setImage(with: URL(string: url), placeholderImage: placeHolder, options: opt!)
+        }else{
+            self.sd_setImage(with: URL(string: url), placeholderImage: placeHolder)
+        }
+    }
+
     /**
      Loads an image from a URL. If cached, the cached image is returned. Otherwise, a place holder is used until the image from web is returned by the closure.
 
@@ -18,7 +28,7 @@ public extension UIImageView{
 
      - Returns A new image
      */
-    func ld_imageFromURL(_ url: String, placeholder: UIImage, fadeIn: Bool = true, shouldCacheImage: Bool = true, closure: ((_ image: UIImage?) -> ())? = nil)
+    func ld_imageFromURL(_ url: String, placeholder: UIImage = UIImage(), fadeIn: Bool = true, shouldCacheImage: Bool = true, closure: ((_ image: UIImage?) -> ())? = nil)
     {
         self.image = UIImage.image(fromURL: url, placeholder: placeholder, shouldCacheImage: shouldCacheImage) {
             (image: UIImage?) in

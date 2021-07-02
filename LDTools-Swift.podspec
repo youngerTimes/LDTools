@@ -49,6 +49,7 @@ TODO: Add long description of the pod here.
   s.dependency 'SVProgressHUD'
   s.dependency 'IQKeyboardManager'
   s.dependency 'TZImagePickerController'
+  s.dependency 'SDWebImage'
   
   # s.resource_bundles = {
   #   'LDTools-Swift' => ['LDTools-Swift/Assets/*.png']
