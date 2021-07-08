@@ -7,9 +7,9 @@
 
 import Foundation
 /// 自定义Nav
-/// 隐藏Nav栏,在AppDelegate 中的hiddenVCs 添加VC的id
+/// 隐藏Nav栏,在AppDelegate 中的hiddenVCs 添加VC的id，继承即可
 ///```
-///if let nav = self.window?.rootViewController as? JQ_BaseNavigationController{
+///if let nav = self.window?.rootViewController as? LD_BaseNavigationController{
 ///    nav.hiddenVCs.append(CityPickerVC.jq_identity)
 ///}
 ///```
@@ -40,7 +40,7 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
         }
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.barTintColor = .white
         self.navigationBar.titleTextAttributes = [.font:UIFont.systemFont(ofSize: 18, weight: .medium), .foregroundColor:UIColor.black]

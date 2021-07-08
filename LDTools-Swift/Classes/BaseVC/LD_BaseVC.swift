@@ -64,7 +64,7 @@ open class LD_BaseVC: UIViewController{
     /// 是否需要返回按钮 默认需要
     open var hh_isHaveBackItem:Bool = true {
         didSet {
-            if hh_isHaveBackItem {
+            if hh_isHaveBackItem && navigationController?.viewControllers.count != 1 {
 
                 navigationItem.leftBarButtonItem = UIBarButtonItem(image: back_img, style: .plain, target: self, action: #selector(backItemEvent))
                 //                navigationItem.leftBarButtonItem?.width = -20

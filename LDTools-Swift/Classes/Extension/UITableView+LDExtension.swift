@@ -11,7 +11,7 @@ public extension UITableView{
 
     /// 添加动画
     /// - Parameter type: 动画类型
-    func addAni(type:LD_TableAniType){
+    func ld_addAni(type:LD_TableAniType){
         DispatchQueue.main.async {
             self.reloadData()
             let cells = self.visibleCells
@@ -39,5 +39,11 @@ public extension UITableView{
                 i+=1
             }
         }
+    }
+
+
+    /// 此注册于“_nibName”的IDentify格式
+    func ld_register(nibName:String){
+        register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: "_\(nibName)")
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 open class LD_BaseTCell: UITableViewCell {
-    open  override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
     }
