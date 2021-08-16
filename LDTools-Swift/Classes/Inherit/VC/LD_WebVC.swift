@@ -10,7 +10,7 @@ import WebKit
 import SnapKit
 
 /// 网页控制器，对页面已进行适配，配有加载进度条
-public class LD_WebVC: UIViewController {
+public class LD_WebVC: LD_BaseVC {
 
     private var webView:WKWebView?
     private(set) var url = ""
@@ -38,6 +38,8 @@ public class LD_WebVC: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        reSetNavTransparence()
 
         let config = WKWebViewConfiguration()
         let userScript = WKUserScript(source: jsCode, injectionTime: .atDocumentStart, forMainFrameOnly: true)

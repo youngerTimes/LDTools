@@ -61,7 +61,7 @@ extension LD_Refreshable {
         return refreshStatus.subscribe(onNext: { (status) in
             switch status {
                 case .beingHeaderRefresh:
-                    scrollView.mj_footer!.resetNoMoreData()
+                    scrollView.mj_footer?.resetNoMoreData()
                     scrollView.mj_header!.beginRefreshing()
                     break
                 case .endHeaderRefresh:
@@ -166,16 +166,19 @@ public var LD_SafeEdges:UIEdgeInsets{
 }
 
 /// 是否是异形屏
+@available(*,deprecated,message: "使用UIDevice扩展")
 public var LD_IsDiffPhone: Bool{
     get {return UIScreen.main.bounds.size.height >= 812 || UIScreen.main.bounds.size.width >= 812}
 }
 
 /// 是否是手机
+@available(*,deprecated,message: "使用UIDevice扩展")
 public var LD_IsPhone: Bool{
     get {return UIDevice.current.userInterfaceIdiom == .phone}
 }
 
 /// 是否是Pad
+@available(*,deprecated,message: "使用UIDevice扩展")
 public var LD_IsPad:Bool{
     get{return UIDevice.current.userInterfaceIdiom == .pad}
 }
@@ -233,6 +236,23 @@ public func LD_currentNavigationController() -> UINavigationController {
 ///}
 ///```
 ///
+
+public final class LDToolFisher<Base> {
+    public let base: Base
+    public init(_ base: Base) {self.base = base}
+}
+
+public protocol LDToolFisherCompatible {
+    associatedtype CompatibleType
+    var ld: CompatibleType { get }
+}
+
+public extension LDToolFisherCompatible {
+    var ld: LDToolFisher<Self> {
+        return LDToolFisher(self)
+    }
+}
+
 public func jq_getAssociatedObject<T>(_ object: Any, _ key: UnsafeRawPointer) -> T? {
     return objc_getAssociatedObject(object, key) as? T
 }

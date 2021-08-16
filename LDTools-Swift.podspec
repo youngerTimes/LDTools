@@ -46,8 +46,9 @@ TODO: Add long description of the pod here.
   s.dependency 'HandyJSON'
   s.dependency 'XCGLogger'
   s.dependency 'VTMagic'
+  s.dependency 'UserDefaultsStore'
   s.dependency 'SVProgressHUD'
-  s.dependency 'IQKeyboardManager'
+  s.dependency 'IQKeyboardManagerSwift'
   s.dependency 'TZImagePickerController'
   s.dependency 'SDWebImage'
   

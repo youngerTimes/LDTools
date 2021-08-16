@@ -151,8 +151,10 @@ public class LDTools:NSObject{
     }
 
 
-    public static func checkVersion(appid:String,_ clouse:((Bool,VersionResultModel?)->Void)? = nil){
-        if appid.isEmpty {fatalError("请填写appid")}
+    public static func checkVersion(appid:String,_ clouse:((Bool,VersionResultModel?,URL?)->Void)? = nil){
+        if appid.isEmpty {
+            LD_ShowText(textStr: "请填写appid");return
+        }
         if let url = URL(string: "https://itunes.apple.com/cn/lookup?id=\(appid)"){
             let shareSession = URLSession.shared
             let request = URLRequest(url: url)
@@ -162,12 +164,12 @@ public class LDTools:NSObject{
                         let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! Dictionary<String, Any>
                         let versionModel = VersionModel.deserialize(from: dictionary)
                         if currentVersion() != versionModel?.results.last?.version{
-                            clouse?(true,versionModel?.results.last!)
+                            clouse?(true,versionModel?.results.last!,url)
                         }else{
-                            clouse?(false,nil)
+                            clouse?(false,nil,url)
                         }
                     }catch{
-                        clouse?(false,nil)
+                        clouse?(false,nil,url)
                     }
                 }
             }

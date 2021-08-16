@@ -70,11 +70,11 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
     ///   - tableView: 被添加的UITableView
     ///   - noticeStr: 提示内容
     ///   - clouse: DataSetView需要重新定义
-    public func ld_setEmptyView(_ tableView:UIScrollView, _ noticeStr:String? = nil,image:UIImage? = nil,bgColor:UIColor = UIColor.white,clouse:((EmptyDataSetView)->Void)? = nil) {
+    public func ld_setEmptyView(_ tableView:UIScrollView, _ noticeStr:String? = nil,image:UIImage? = nil,foregroundColor:UIColor = UIColor.white,clouse:((EmptyDataSetView)->Void)? = nil) {
 
         unowned let weakSelf = self
         tableView.emptyDataSetView { (emptyDataSetView) in
-            emptyDataSetView.titleLabelString(NSAttributedString.init(string: (noticeStr != nil) ? noticeStr! : "暂无数据", attributes: [.font:UIFont.systemFont(ofSize: 14,weight: .medium), .foregroundColor:bgColor as Any]))
+            emptyDataSetView.titleLabelString(NSAttributedString.init(string: (noticeStr != nil) ? noticeStr! : "暂无数据", attributes: [.font:UIFont.systemFont(ofSize: 14,weight: .medium), .foregroundColor:foregroundColor as Any]))
                 .image(image)
                 .dataSetBackgroundColor(UIColor.white)
                 .verticalOffset(0)

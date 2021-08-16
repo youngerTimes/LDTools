@@ -138,15 +138,7 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
     public typealias JQLocationHeadingClouse = (CLHeading,Double)->Void
     public typealias JQLocationErrorClouse = (Error)->Void
 
-    public var manager:CLLocationManager{
-        get{
-            let m = CLLocationManager()
-            m.delegate = self
-            m.desiredAccuracy = kCLLocationAccuracyBest
-            m.distanceFilter = 10
-            return m
-        }
-    }
+    public var manager:CLLocationManager!
 
     private var currentType = 0
 
@@ -164,6 +156,10 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
     }
 
     public func startLocation(_ locationClouse:@escaping JQLocationLocationClouse,errorClouse:@escaping JQLocationErrorClouse){
+        manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = 10
+        manager.delegate = self
         currentType = 0
         self.locationClouse = locationClouse
         self.errorClouse = errorClouse
@@ -197,6 +193,10 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
 
 
     public func startHeading(_ headingClouse:@escaping JQLocationHeadingClouse,errorClouse:@escaping JQLocationErrorClouse){
+        manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = 10
+        manager.delegate = self
         currentType = 1
         self.headingClouse = headingClouse
         self.errorClouse = errorClouse

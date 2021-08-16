@@ -7,6 +7,6 @@
 
 import UIKit
 
-class LD_BaseTabBarVC: UITabBarController {
+open class LD_BaseTabBarVC: UITabBarController {
 
 }

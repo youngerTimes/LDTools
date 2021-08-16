@@ -380,16 +380,14 @@ public extension String{
     }
 
     /// 将HTML标签中<>去除
-    func ld_filterFromHTML(_ htmlString:String)->String{
-        var html = htmlString
-        let scanner = Scanner(string: htmlString)
-        let text:String = ""
-        while scanner.isAtEnd == false {
-            scanner.scanUpTo("<", into: nil)
-            scanner.scanUpTo(">", into: nil)
-            html = htmlString.replacingOccurrences(of:"\(text)>", with: "")
+    func ld_filterFromHTML()->String{
+        do {
+            let regularExpretion = try NSRegularExpression(pattern: "<[^>]*>|\n", options: .caseInsensitive)
+            let html = regularExpretion.stringByReplacingMatches(in: self, options: .reportProgress, range: NSRange(location: 0, length: self.count), withTemplate: "")
+            return html
+        } catch {
+            return ""
         }
-        return html
     }
 
     ///减少内存(截取)

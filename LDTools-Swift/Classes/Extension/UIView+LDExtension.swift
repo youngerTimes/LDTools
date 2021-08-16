@@ -259,6 +259,7 @@ public extension UIView{
 
     ///设置渐变色(Frame)
     func ld_gradientColor(colorArr:[CGColor],cornerRadius:CGFloat = 0) {
+        self.ld_masksToBounds = true
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = colorArr
@@ -272,6 +273,7 @@ public extension UIView{
     ///设置渐变色(Nib)
     @discardableResult
     func ld_gradientNibColor(colorArr:[CGColor],cornerRadius:CGFloat = 0) -> CAGradientLayer? {
+        self.ld_masksToBounds = true
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRect(x: 0, y: 0, width: self.frame.width*LD_RateW, height: self.frame.height*LD_RateH)
         gradientLayer.colors = colorArr
@@ -292,6 +294,7 @@ public extension UIView{
         self.layer.shadowOffset = offset
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
+        self.layer.masksToBounds = false
     }
 
     /// 添加阴影（父视图）

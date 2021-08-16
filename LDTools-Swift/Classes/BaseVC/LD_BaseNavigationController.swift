@@ -17,24 +17,24 @@ import Foundation
 open class LD_BaseNavigationController:  UINavigationController, UINavigationControllerDelegate {
     public var lastVc: UIViewController!
     /// 隐藏nav
-    public var hiddenNavVCs = [String]()
+    open var hiddenNavVCs = [String]()
     private var popDelegate: UIGestureRecognizerDelegate?
 
     //标题颜色
-    public var titleTextAttributes:[NSAttributedString.Key : Any]?{
+    open var titleTextAttributes:[NSAttributedString.Key : Any]?{
         didSet{
             self.navigationBar.titleTextAttributes =  titleTextAttributes
         }
     }
 
     //基础填充颜色
-    public var tintColor:UIColor?{
+    open var tintColor:UIColor?{
         didSet{
             self.navigationBar.tintColor = tintColor
         }
     }
 
-    public var barTintColor:UIColor?{
+    open var barTintColor:UIColor?{
         didSet{
             self.navigationBar.barTintColor = barTintColor
         }
@@ -50,12 +50,12 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
         self.popDelegate = self.interactivePopGestureRecognizer?.delegate
     }
 
-    public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         viewController.hidesBottomBarWhenPushed = true
         super.pushViewController(viewController, animated: animated)
     }
 
-    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    open func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
 
       var hidden = false
         for key in hiddenNavVCs {
@@ -77,11 +77,11 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
         }
     }
 
-    public override var childForStatusBarHidden: UIViewController? {
+    open override var childForStatusBarHidden: UIViewController? {
         return self.topViewController
     }
 
-    public override var childForStatusBarStyle: UIViewController? {
+    open override var childForStatusBarStyle: UIViewController? {
         return self.topViewController
     }
 }

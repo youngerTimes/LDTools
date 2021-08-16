@@ -58,70 +58,52 @@ public extension UIDevice {
     }
 
     ///程序名称
-    var jq_displayName:String{
-        get{
-            return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
-        }
+    var ld_displayName:String{
+        get{return Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String}
     }
 
     ///主版本号
-    var jq_shortVersion:String{
-        get{
-            return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-        }
+    var ld_shortVersion:String{
+        get{return Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String}
     }
 
     ///内部版本号
-    var jq_bundleVersion:String{
-        get{
-            return Bundle.main.infoDictionary!["CFBundleVersion"] as! String
-        }
+    var ld_bundleVersion:String{
+        get{return Bundle.main.infoDictionary!["CFBundleVersion"] as! String}
     }
 
     ///iOS版本
-    var jq_systemVersion:String{
-        get{
-            return UIDevice.current.systemVersion
-        }
+    var ld_systemVersion:String{
+        get{return UIDevice.current.systemVersion}
     }
 
     ///设备udid
-    var jq_identifier:String{
-        get{
-            return UIDevice.current.identifierForVendor?.uuidString ?? ""
-        }
+    var ld_identifier:String{
+        get{return UIDevice.current.identifierForVendor?.uuidString ?? ""}
     }
 
     ///设备名称
-    var jq_systemName:String{
-        get{
-            return UIDevice.current.systemName
-        }
+    var ld_systemName:String{
+        get{return UIDevice.current.systemName}
     }
 
     ///设备型号
-    var jq_model:String{
-        get{
-            return UIDevice.current.model
-        }
+    var ld_model:String{
+        get{return UIDevice.current.model}
     }
 
     ///设备具体型号
-    var jq_modelName:String{
-        get{
-            return UIDevice.current.modelName
-        }
+    var ld_modelName:String{
+        get{return UIDevice.current.modelName}
     }
 
     ///设备区域化型号
-    var jq_localizedModel:String{
-        get{
-            return UIDevice.current.localizedModel
-        }
+    var ld_localizedModel:String{
+        get{return UIDevice.current.localizedModel}
     }
 
     /// 异形屏的安全距离
-    static var jq_safeEdges:UIEdgeInsets{
+    static var ld_safeEdges:UIEdgeInsets{
         get{
             let window = UIApplication.shared.keyWindow
             if window != nil{
@@ -136,107 +118,104 @@ public extension UIDevice {
         }
     }
 
-    ///判断是否设备>= iPoneX
-    static var jq_isDiffPhone: Bool  {
-        get {return UIScreen.main.bounds.size.height >= 812 || UIScreen.main.bounds.size.width >= 812}
-    }
+//    ///判断是否设备>= iPoneX
+//    static var ld_isDiffPhone: Bool  {
+//        get {return UIScreen.main.bounds.size.height >= 812 || UIScreen.main.bounds.size.width >= 812}
+//    }
 
-    ///是否是手机
-    static var jq_isIpone: Bool {
-        get {return UIDevice.current.userInterfaceIdiom == .phone}
-    }
+//    ///是否是手机
+//    static var ld_isIpone: Bool {
+//        get {return UIDevice.current.userInterfaceIdiom == .phone}
+//    }
 
     /// 判断是否为刘海屏 iphonex系列
-    static func isiPhoneXSeries() -> Bool {
-
-        guard #available(iOS 11.0, *) else {
-            return false
-        }
+    static func ld_isiPhoneXSeries() -> Bool {
+        guard #available(iOS 11.0, *) else {return false}
         return UIApplication.shared.windows[0].safeAreaInsets != UIEdgeInsets.zero
     }
 
-    // MARK: - 系统类型
-    class func isiOS13() -> Bool {
-        if #available(iOS 13.0, *) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    class func isiOS12() -> Bool {
-        if #available(iOS 12.0, *) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    class func isiOS11() -> Bool {
-        if #available(iOS 11.0, *) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    class func isiOS10() -> Bool {
-        if #available(iOS 10.0, *) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    class func isiOS9() -> Bool {
-        if #available(iOS 9.0, *) {
-            return true
-        } else {
-            return false
-        }
-    }
+//    // MARK: - 系统类型
+//    class func isiOS13() -> Bool {
+//        if #available(iOS 13.0, *) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    class func isiOS12() -> Bool {
+//        if #available(iOS 12.0, *) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    class func isiOS11() -> Bool {
+//        if #available(iOS 11.0, *) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    class func isiOS10() -> Bool {
+//        if #available(iOS 10.0, *) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
+//
+//    class func isiOS9() -> Bool {
+//        if #available(iOS 9.0, *) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
 
     // MARK: - 屏幕类型
-    @objc class func isiPhoneX() -> Bool {
-        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 1125, height: 2436)))! {
-            return true
-        }
-        return false
-    }
-
-    class func isiPhone6PlusBigMode() -> Bool {
-        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 1125, height: 2001)))! {
-            return true
-        }
-        return false
-    }
-
-    class func isiPhone6Plus() -> Bool {
-        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width:1242, height: 2208)))! {
-            return true
-        }
-        return false
-    }
-
-    class func isiPhone6BigMode() -> Bool{
-        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 320, height: 568)))! {
-            return true
-        }
-        return false
-    }
-
-    class func isiPhone6() -> Bool {
-        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width:750, height: 1334)))! {
-            return true
-        }
-        return false
-    }
-
-    class func isiPhone5() -> Bool {
-        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 640, height: 1136)))! {
-            return true
-        }
-        return false
-    }
+//    @objc class func isiPhoneX() -> Bool {
+//        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 1125, height: 2436)))! {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    class func isiPhone6PlusBigMode() -> Bool {
+//        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 1125, height: 2001)))! {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    class func isiPhone6Plus() -> Bool {
+//        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width:1242, height: 2208)))! {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    class func isiPhone6BigMode() -> Bool{
+//        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 320, height: 568)))! {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    class func isiPhone6() -> Bool {
+//        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width:750, height: 1334)))! {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    class func isiPhone5() -> Bool {
+//        if (UIScreen.main.currentMode?.size.equalTo(CGSize.init(width: 640, height: 1136)))! {
+//            return true
+//        }
+//        return false
+//    }
 
 }

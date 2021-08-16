@@ -467,7 +467,7 @@ public extension Date{
     }
     
     /// 时间转换为时分秒
-    func ld_transToHourMinSec(time: Int,retract:Bool = true) -> String{
+     static func ld_transToHourMinSec(time: Int,retract:Bool = true) -> String{
         
         var days    = 0
         var hours   = 0
@@ -685,7 +685,7 @@ public extension Date{
     }
     
     ///时间戳格式格式化时间
-    func ld_format(_ time:TimeInterval,formatter:String)->String{
+    static func ld_format(_ time:TimeInterval,formatter:String)->String{
         let detaildate = NSDate(timeIntervalSince1970: time)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatter
@@ -693,7 +693,7 @@ public extension Date{
     }
     
     ///时间戳格式格式化时间
-    func ld_formatDate(_ time:TimeInterval,formatter:String)->Date{
+    static func ld_formatDate(_ time:TimeInterval,formatter:String)->Date{
         let detaildate = Date(timeIntervalSince1970: time)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatter
