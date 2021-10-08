@@ -600,6 +600,18 @@ public extension UIImage{
         return image ?? UIImage()
     }
 
+
+    /// 创建一个透明的图片，具有渐变
+    static func ld_createClarityGradientImg(rect:CGRect,alpha:CGFloat = 0)->UIImage{
+        let color = UIColor.black.withAlphaComponent(0.5)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.withAlphaComponent(alpha).cgColor)
+        context?.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        return image ?? UIImage()
+    }
+
     /// 创建带有颜色的图片
     static func ld_createColorImg(rect:CGRect,color:UIColor,alpha:CGFloat = 0)->UIImage{
         UIGraphicsBeginImageContext(rect.size)

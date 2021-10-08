@@ -193,6 +193,27 @@ public struct VersionModel:HandyJSON{
 
 }
 
+class LD_Delegate<Input, Output> {
+    private var block: ((Input) -> Output?)?
+    func delegate<T: AnyObject>(on target: T, block: ((T, Input) -> Output)?) {
+        self.block = { [weak target] input in
+            guard let target = target else { return nil }
+            return block?(target, input)
+        }
+    }
+
+    func call(_ input: Input) -> Output? {
+        return block?(input)
+    }
+}
+
+extension LD_Delegate where Input == Void {
+
+    func call() -> Output? {
+        return call(())
+    }
+}
+
 public struct VersionResultModel:HandyJSON{
     public init(){}
 

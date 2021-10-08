@@ -39,7 +39,7 @@ class CellAniViewController: LD_BaseVC {
         }
 
         self.item = ["1","2","3","4","5","6","7","8","9","10","11","11","11","11","11","11"]
-        tableView.addAni(type: type)
+        tableView.ld_addAni(type: type)
     }
 
     @objc func changeAction(sender:UISegmentedControl){
@@ -62,7 +62,7 @@ class CellAniViewController: LD_BaseVC {
                 type = .fillOne
             default:break
         }
-        tableView.addAni(type: type)
+        tableView.ld_addAni(type: type)
     }
 }
 

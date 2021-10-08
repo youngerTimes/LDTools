@@ -2,15 +2,22 @@ PODS:
   - Differentiator (5.0.0)
   - EmptyDataSet-Swift (5.0.0)
   - HandyJSON (5.0.2)
-  - LDTools-Swift (0.1.1):
+  - IQKeyboardManagerSwift (6.5.6)
+  - LDTools-Swift (0.1.0):
     - EmptyDataSet-Swift
     - HandyJSON
+    - IQKeyboardManagerSwift
     - MJRefresh
     - QMUIKit
     - RxCocoa
     - RxDataSources
     - RxSwift
+    - SDWebImage
     - SnapKit
+    - SVProgressHUD
+    - TZImagePickerController
+    - UserDefaultsStore
+    - VTMagic
     - XCGLogger
   - MJRefresh (3.5.0)
   - ObjcExceptionBridging (1.0.1):
@@ -334,7 +341,16 @@ PODS:
   - RxRelay (6.0.0):
     - RxSwift (= 6.0.0)
   - RxSwift (6.0.0)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - SnapKit (4.2.0)
+  - SVProgressHUD (2.2.5)
+  - TZImagePickerController (3.5.8)
+  - UserDefaultsStore (1.5.0)
+  - VTMagic (1.2.4):
+    - VTMagic/Core (= 1.2.4)
+  - VTMagic/Core (1.2.4)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -348,7 +364,13 @@ SPEC REPOS:
     - Differentiator
     - EmptyDataSet-Swift
     - HandyJSON
+    - IQKeyboardManagerSwift
     - RxDataSources
+    - SDWebImage
+    - SVProgressHUD
+    - TZImagePickerController
+    - UserDefaultsStore
+    - VTMagic
   trunk:
     - MJRefresh
     - ObjcExceptionBridging
@@ -367,7 +389,8 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
-  LDTools-Swift: f8a6a8f78202c68ab4878d1b380040b2276b7dca
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  LDTools-Swift: 9ec4c8a4a919c17f0fc6a443bd91a046beef9d4c
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   QMUIKit: 1063a99f90aedd6e2dd65026ce0df46e6785e67b
@@ -375,9 +398,14 @@ SPEC CHECKSUMS:
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxRelay: 8d593be109c06ea850df027351beba614b012ffb
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TZImagePickerController: 7fd9702897ef8c0b7c951e5463f4bcf398296f9e
+  UserDefaultsStore: 905e30372ff432197d199ce1f6fe51be7bf69628
+  VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
 PODFILE CHECKSUM: 09434309895d5a0c80cf41a573d4906876d8a905
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.10.1

@@ -16,7 +16,7 @@ public enum LD_MapNavigationType {
     case GoogleMap //谷歌地图
     case qqMap //qq地图
 
-    static let allValues = [BaiduMap,Amap,GoogleMap,qqMap]
+    static let allValues = [BaiduMap,Amap,qqMap]
 
     public var raw:String{
         get{
@@ -26,7 +26,7 @@ public enum LD_MapNavigationType {
                 case .Amap:
                     return "高德地图"
                 case .GoogleMap:
-                    return "高德地图"
+                    return "Google地图"
                 case .qqMap:
                     return "QQ地图"
             }
@@ -40,7 +40,7 @@ public enum LD_MapNavigationType {
                 case .Amap:
                     return "iosamap://"
                 case .GoogleMap:
-                    return "iosamap://"
+                    return "googlemap://"
                 case .qqMap:
                     return "qqmap://"
             }
@@ -111,7 +111,7 @@ public class LD_MapNavigationTool{
         MKMapItem.openMaps(with: [currentLoc,distanceLoc], launchOptions: launchOpt)
     }
 
-    public static func plaformMap(_ type:LD_MapNavigationType,scheme:String,coor:CLLocationCoordinate2D,distanceName:String,error:(()->Void)? = nil){
+    public static func plaformMap(_ type:LD_MapNavigationType,scheme:String,coor:CLLocationCoordinate2D,distanceName:String){
 
         var url = ""
         switch type {
@@ -126,7 +126,7 @@ public class LD_MapNavigationTool{
         }
         UIApplication.shared.open(URL(string: url.ld_urlEncoded())!, options: [:]) { (status) in
             if !status{
-                error?()
+                LD_ShowError(errorStr: "导航失败,请选择其他导航APP")
             }
         }
     }
@@ -135,16 +135,25 @@ public class LD_MapNavigationTool{
 public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
 
     public typealias JQLocationLocationClouse = (CLLocation)->Void
+    public typealias JQGeocoderClouse = (CLPlacemark)->Void
     public typealias JQLocationHeadingClouse = (CLHeading,Double)->Void
     public typealias JQLocationErrorClouse = (Error)->Void
+    public typealias JQLocationPOIClouse = ([MKMapItem],Error?)->Void
+    public typealias JQLocationRoutesClouse = ([MKRoute],Error?)->Void
 
     public var manager:CLLocationManager!
 
     private var currentType = 0
+    private(set) var asSingle = true
+    private var geocoderAddress:String?
 
     public var locationClouse:JQLocationLocationClouse?
     public var headingClouse:JQLocationHeadingClouse?
     public var errorClouse:JQLocationErrorClouse?
+    public var geocoderClouse:JQGeocoderClouse?
+    public var locationPOIClouse:JQLocationPOIClouse?
+    public var routesClouse:JQLocationRoutesClouse?
+
 
     public static let `default`:LD_LocationTool = {
         let center = LD_LocationTool()
@@ -155,14 +164,17 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
         super.init()
     }
 
-    public func startLocation(_ locationClouse:@escaping JQLocationLocationClouse,errorClouse:@escaping JQLocationErrorClouse){
+    public func startLocation(filter:Double = 10,asSingle:Bool = true,_ locationClouse:@escaping JQLocationLocationClouse,errorClouse:@escaping JQLocationErrorClouse,geocoderAddress:String? = nil,geocoderClouse:JQGeocoderClouse? = nil){
         manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.distanceFilter = 10
+        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        manager.distanceFilter = filter
         manager.delegate = self
         currentType = 0
         self.locationClouse = locationClouse
         self.errorClouse = errorClouse
+        self.geocoderClouse = geocoderClouse
+        self.geocoderAddress = geocoderAddress
+        self.asSingle = asSingle
 
         var currentStatus:CLAuthorizationStatus
         if #available(iOS 14.0, *) {
@@ -183,6 +195,69 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
         }
     }
 
+
+    /// 地理逆向
+    /// - Parameters:
+    ///   - address: 查询地址
+    ///   - coordinate: 定位位置
+    public func searchGeocoder(address:String? = nil,coordinate:CLLocationCoordinate2D? = nil,clouse:@escaping JQGeocoderClouse){
+        self.geocoderClouse = clouse
+        let geocoder = CLGeocoder()
+        if address != nil {
+            geocoder.geocodeAddressString(address!) {[weak self] items, error in
+                if let item = items?.last{
+                    self?.geocoderClouse?(item)
+                }
+            }
+        }else if coordinate != nil{
+            let location = CLLocation(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
+            geocoder.reverseGeocodeLocation(location) {[weak self] items, error in
+                if let item = items?.last{
+                    self?.geocoderClouse?(item)
+                }
+            }
+        }
+    }
+
+
+    /// 搜索附近兴趣点
+    /// - Parameters:
+    ///   - keyword: 关键词，为空报错
+    ///   - center: 中心位置
+    ///   - meters: 半径
+    ///   - clouse: 回调
+    public func searchPOI(keyword:String,center:CLLocationCoordinate2D,meters:CLLocationDistance,clouse:@escaping JQLocationPOIClouse){
+        self.locationPOIClouse = clouse
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: meters, longitudinalMeters: meters)
+        let request = MKLocalSearch.Request()
+        request.region = region
+        request.naturalLanguageQuery = keyword
+        let ser = MKLocalSearch(request: request)
+        ser.start {[weak self] response, error in
+            self?.locationPOIClouse?(response?.mapItems ?? [],error)
+        }
+    }
+
+
+    /// 计算导航路线
+    /// - Parameters:
+    ///   - from: 从
+    ///   - to: 到
+    ///   - clouse: 回调
+    public func directions(from:CLLocationCoordinate2D,to:CLLocationCoordinate2D,clouse:@escaping JQLocationRoutesClouse){
+        self.routesClouse = clouse
+        let fromItem = MKMapItem(placemark: MKPlacemark(coordinate: from))
+        let toItem = MKMapItem(placemark: MKPlacemark(coordinate: to))
+        let request = MKDirections.Request()
+        request.source = fromItem
+        request.destination = toItem
+        request.requestsAlternateRoutes = true
+        let directions = MKDirections(request: request)
+        directions.calculate { response, error in
+            self.routesClouse?(response?.routes ?? [],error)
+        }
+    }
+
     public func stopLocation(){
         manager.stopUpdatingLocation()
     }
@@ -192,14 +267,15 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
     }
 
 
-    public func startHeading(_ headingClouse:@escaping JQLocationHeadingClouse,errorClouse:@escaping JQLocationErrorClouse){
+    public func startHeading(filter:Double = 10,asSingle:Bool = true,_ headingClouse:@escaping JQLocationHeadingClouse,errorClouse:@escaping JQLocationErrorClouse){
         manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
-        manager.distanceFilter = 10
+        manager.distanceFilter = filter
         manager.delegate = self
         currentType = 1
         self.headingClouse = headingClouse
         self.errorClouse = errorClouse
+        self.asSingle = asSingle
 
         var currentStatus:CLAuthorizationStatus
         if #available(iOS 14.0, *) {
@@ -253,6 +329,21 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationClouse?(locations.last!)
+
+        guard let clouse = geocoderClouse else { return }
+        let geocoder = CLGeocoder()
+
+        if geocoderAddress?.isEmpty ?? true {
+            geocoder.reverseGeocodeLocation(locations.last!) {[weak self] placemarks, error in
+                if let placemark = placemarks?.last{clouse(placemark)}
+                if let weakSelf = self{if weakSelf.asSingle{weakSelf.stopLocation()}}
+            }
+        }else{
+            geocoder.geocodeAddressString(geocoderAddress!, in: nil) {[weak self] placemarks, error in
+                if let placemark = placemarks?.last{clouse(placemark)}
+                if let weakSelf = self{if weakSelf.asSingle{weakSelf.stopLocation()}}
+            }
+        }
     }
 
     private func authorAlert(){

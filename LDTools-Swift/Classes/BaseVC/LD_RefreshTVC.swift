@@ -32,7 +32,7 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
             self.page = 1
             self.refreshStatus.onNext(LD_RefreshStatus.beingHeaderRefresh)
         }else {
-            if page >= totalPages {
+            if page >= totalPages && totalPages != -1 {
                 self.refreshStatus.onNext(LD_RefreshStatus.noMoreData);return
             }else{
                 self.page += 1
@@ -44,13 +44,17 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
     /// 开始刷新数据
     public func ld_beginRefresh(){
         refreshStatus.onNext(LD_RefreshStatus.beingHeaderRefresh)
+        scrollView?.mj_footer?.resetNoMoreData()
     }
 
-    /// 结束刷新数据
-    public func ld_endRefresh() {
+    /// 结束刷新数据：没有总页数
+    public func ld_endRefresh(isEmpty:Array<Any>? = nil) {
         self.refreshStatus.onNext(LD_RefreshStatus.endHeaderRefresh)
         if self.scrollView?.mj_footer != nil {
             self.refreshStatus.onNext(LD_RefreshStatus.endFooterRefresh)
+            if isEmpty?.count == 0 {
+                self.refreshStatus.onNext(LD_RefreshStatus.noMoreData)
+            }
         }
     }
 
@@ -111,6 +115,7 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
         }else {
             self.refreshStatusBind(to: self.scrollView!, {
                 weakSelf!.ld_getData()
+                weakSelf!.ld_endRefresh()
             }, nil).disposed(by: LD_disposeBag)
         }
         if #available(iOS 11.0, *) {

@@ -142,7 +142,8 @@ public extension UIView{
     }
 
     ///切部分圆角(Frame) 注意不能用错，storyboard和nib 在高度动态变化时，容易出现BUG
-    func ld_cornerPart(byRoundingCorners corners: UIRectCorner, radii: CGFloat) {
+    @discardableResult
+    func ld_cornerPart(byRoundingCorners corners: UIRectCorner, radii: CGFloat)->CAShapeLayer {
         let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radii, height: radii))
         let maskLayer = CAShapeLayer()
         maskLayer.frame = self.bounds
@@ -150,6 +151,7 @@ public extension UIView{
         maskLayer.masksToBounds = false
         maskLayer.shouldRasterize = true
         self.layer.mask = maskLayer
+        return maskLayer
     }
     ///切部分圆角(Xib)
     func ld_cornerPartWithNib(byRoundingCorners corners: UIRectCorner, radii: CGFloat, size: CGSize) {
@@ -258,27 +260,39 @@ public extension UIView{
     }
 
     ///设置渐变色(Frame)
-    func ld_gradientColor(colorArr:[CGColor],cornerRadius:CGFloat = 0) {
+    func ld_gradientColor(colorArr:[CGColor],cornerRadius:CGFloat = 0,direction:LD_DottedLineType = .Horizontal) {
         self.ld_masksToBounds = true
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.bounds
         gradientLayer.colors = colorArr
         gradientLayer.cornerRadius = cornerRadius
         if cornerRadius > 0 {gradientLayer.masksToBounds = true}
-        gradientLayer.startPoint = CGPoint(x: 0, y: 1)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+
+        if direction == .Horizontal {
+            gradientLayer.startPoint = CGPoint(x: 0, y: 1)
+            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        }else{
+            gradientLayer.startPoint = CGPoint(x: 1, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        }
+
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
 
     ///设置渐变色(Nib)
     @discardableResult
-    func ld_gradientNibColor(colorArr:[CGColor],cornerRadius:CGFloat = 0) -> CAGradientLayer? {
+    func ld_gradientNibColor(colorArr:[CGColor],cornerRadius:CGFloat = 0,direction:LD_DottedLineType = .Horizontal) -> CAGradientLayer? {
         self.ld_masksToBounds = true
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = CGRect(x: 0, y: 0, width: self.frame.width*LD_RateW, height: self.frame.height*LD_RateH)
         gradientLayer.colors = colorArr
-        gradientLayer.startPoint = CGPoint(x: 0, y: 1)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        if direction == .Horizontal {
+            gradientLayer.startPoint = CGPoint(x: 0, y: 1)
+            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        }else{
+            gradientLayer.startPoint = CGPoint(x: 1, y: 0)
+            gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        }
         gradientLayer.cornerRadius = cornerRadius
         if cornerRadius > 0 {gradientLayer.masksToBounds = true}
         self.layer.insertSublayer(gradientLayer, at: 0)

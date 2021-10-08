@@ -1,6 +1,6 @@
 {
   "name": "LDTools-Swift",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "summary": "喜望软件：iOS集合开发包(Swift)",
   "swift_versions": "5.0",
   "description": "TODO: Add long description of the pod here.",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "http://yangk@sinata.cn:10101/gitblit/r/ios/SwiftFrame.git",
-    "tag": "0.1.1"
+    "tag": "0.1.0"
   },
   "platforms": {
     "ios": "10.0"
@@ -51,6 +51,24 @@
 
     ],
     "XCGLogger": [
+
+    ],
+    "VTMagic": [
+
+    ],
+    "UserDefaultsStore": [
+
+    ],
+    "SVProgressHUD": [
+
+    ],
+    "IQKeyboardManagerSwift": [
+
+    ],
+    "TZImagePickerController": [
+
+    ],
+    "SDWebImage": [
 
     ]
   },

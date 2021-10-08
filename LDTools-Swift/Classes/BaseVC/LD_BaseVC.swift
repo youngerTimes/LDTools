@@ -27,11 +27,11 @@ open class LD_BaseVC: UIViewController{
     private(set) public var currentStyle:LD_AppearanceStyle = .none
     open var hh_popBlock:(() -> Void)?
     open var closeDarkStyle:Bool = true //是否关闭暗黑模式
-    open var auotorotate:Bool = false
 
     open override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        automaticallyAdjustsScrollViewInsets = false
         //初次进入,判断当前风格
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
@@ -101,7 +101,7 @@ open class LD_BaseVC: UIViewController{
         hh_isHaveBackItem = true
     }
 
-    /// 屏幕旋转监听
+    /// 屏幕旋转监听:当设备方向改变，需要对UI进行重新布局，子类重写此方法
     @objc open func receiverNotification(orient:UIDeviceOrientation,desc:String){}
 
 
@@ -112,7 +112,7 @@ open class LD_BaseVC: UIViewController{
     open func setNavTransparence(titleColor:UIColor = .white,font:UIFont = UIFont.systemFont(ofSize: 18, weight: .medium)){
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.tintColor = titleColor
+        self.navigationController?.navigationBar.tintColor = titleColor.withAlphaComponent(1)
         self.navigationController?.navigationBar.titleTextAttributes = [.font:font, .foregroundColor:titleColor]
     }
 
@@ -178,13 +178,13 @@ open class LD_BaseVC: UIViewController{
         }
     }
 
-    /// 强制旋转横屏,单纯的旋转【非强制】
+    /// 旋转横屏,单纯的旋转【非强制】
     public func ld_forceOrientationLandscape() {
         let oriention = UIInterfaceOrientation.landscapeRight // 设置屏幕为横屏
         UIDevice.current.setValue(oriention.rawValue, forKey: "orientation")
         UIViewController.attemptRotationToDeviceOrientation()
     }
-    // 强制旋转竖屏,单纯的旋转【非强制】
+    // 旋转竖屏,单纯的旋转【非强制】
     public func ld_forceOrientationPortrait() {
         let oriention = UIInterfaceOrientation.portrait // 设置屏幕为竖屏
         UIDevice.current.setValue(oriention.rawValue, forKey: "orientation")

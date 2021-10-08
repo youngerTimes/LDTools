@@ -614,6 +614,16 @@ document.createElement('meta');script.name = 'viewport';script.content=\"width=d
         return self.trimmingCharacters(in: whitespace)
     }
 
+
+    /// 字符串转ASCII
+    var ld_toAscii:Int{
+        var numberFromC = 0
+        for scalar  in self.unicodeScalars {
+            numberFromC = Int(scalar.value)
+        }
+        return numberFromC
+    }
+
     ///去掉首尾空格 包括后面的换行 \n
     var ld_removeHeadAndTailSpacePro:String {
         let whitespace = NSCharacterSet.whitespacesAndNewlines

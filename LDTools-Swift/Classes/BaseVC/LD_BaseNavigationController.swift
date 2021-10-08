@@ -46,6 +46,7 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
         self.navigationBar.titleTextAttributes = [.font:UIFont.systemFont(ofSize: 18, weight: .medium), .foregroundColor:UIColor.black]
         self.navigationBar.tintColor = UIColor.black
         self.navigationBar.shadowImage = UIImage()
+        self.navigationBar.isTranslucent = false
         self.delegate = self
         self.popDelegate = self.interactivePopGestureRecognizer?.delegate
     }

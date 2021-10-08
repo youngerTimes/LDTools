@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import HandyJSON
 public extension Array{
 
     ///unicode编码问题
@@ -44,6 +45,21 @@ public extension Array{
             }
         }
         return dict
+    }
+
+
+    /// 获取最大值
+   static func ld_max<T:Comparable>( _ seq:[T]) -> T?{
+       if seq.count == 0{return nil}
+        return seq.reduce(seq[0]){
+            Swift.max($0, $1)
+        }
+    }
+
+    func ld_max<T:HandyJSON>(_ f:(Element)->T) -> [T] {
+
+        return Array<T>()
+
     }
 
 

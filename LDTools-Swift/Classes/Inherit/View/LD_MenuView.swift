@@ -17,6 +17,7 @@ public class LD_MenuView: UIView {
     private var items = [String]()
     private var menuClouse:((NSInteger,String)->Void)?
     private var tableWidth = 0
+    private var maxHeight:CGFloat?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,10 +31,11 @@ public class LD_MenuView: UIView {
     ///   - tapView: 点击的师徒
     ///   - items: 需要展示的条目
     ///   - clouse: 回调点击的条目的索引和名称
-    public func show(_ hander:UIViewController,tapView:UIView?,items:[String], clouse:@escaping (NSInteger,String)->Void){
+    public func show(_ hander:UIViewController,tapView:UIView?,items:[String],maxHeight:CGFloat? = nil, clouse:@escaping (NSInteger,String)->Void){
         handerVC = hander
         self.tapView = tapView
         self.items = items
+        self.maxHeight = maxHeight
         menuClouse = clouse
         let keyWindow  = UIApplication.shared.keyWindow
         keyWindow?.addSubview(self)
@@ -42,7 +44,7 @@ public class LD_MenuView: UIView {
         tableView!.delegate = self
         tableView!.dataSource = self
         tableView!.separatorStyle = .none
-        tableView!.isScrollEnabled = false
+        tableView!.isScrollEnabled = maxHeight != nil ? true:false
         tableView!.register(MenuItemTCell.self, forCellReuseIdentifier: "_MenuItemTCell")
         tableView!.ld_cornerRadius = 8 * LD_RateW
         addSubview(tableView!)
@@ -66,18 +68,27 @@ public class LD_MenuView: UIView {
 
         UIView.animate(withDuration: 0.2) {
             if tapView == nil{
-                self.tableView!.snp.remakeConstraints { (make) in
+                self.tableView!.snp.remakeConstraints {[weak self](make) in
+
                     make.right.equalToSuperview().offset(-5 * LD_RateW)
                     make.top.equalToSuperview().offset(LD_NavBarHeight)
                     make.width.greaterThanOrEqualTo(50 * LD_RateW)
-                    make.height.equalTo(CGFloat(46 * items.count) * LD_RateW)
+                    if maxHeight != nil{
+                        make.height.equalTo(self!.maxHeight ?? 0)
+                    }else{
+                        make.height.equalTo(CGFloat(46 * items.count) * LD_RateW)
+                    }
                 }
             }else{
-                self.tableView!.snp.remakeConstraints { (make) in
+                self.tableView!.snp.remakeConstraints {[weak self](make) in
                     make.centerX.equalTo(tapView!)
                     make.top.equalTo(tapView!.snp.bottom).offset(5 * LD_RateW)
                     make.width.equalTo(tapView!.ld_width)
-                    make.height.equalTo(CGFloat(46 * items.count) * LD_RateW)
+                    if maxHeight != nil{
+                        make.height.equalTo(self!.maxHeight ?? 0)
+                    }else{
+                        make.height.equalTo(CGFloat(46 * items.count) * LD_RateW)
+                    }
                 }
             }
             self.layoutIfNeeded()
@@ -184,7 +195,9 @@ public class LD_MenuView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         tableView?.ld_shadow(shadowColor: UIColor(hexStr: "#00575E"), corner: 16, opacity: 0.1)
-        tableView?.ld_masksToBounds = false
+        tableView?.ld_masksToBounds = true
+
+        self.ld_addShadows(shadowColor: UIColor.gray.withAlphaComponent(0.5), corner: 16, radius: 2, offset: self.frame.size, opacity: 1)
     }
 
 
@@ -214,17 +227,20 @@ extension LD_MenuView:UITableViewDataSource{
         cell.itemNameL?.text = items[indexPath.row]
         cell.contentView.backgroundColor = UIColor.clear
         cell.backgroundColor = UIColor.clear
-        cell.contentView.alpha = 0
 
         if indexPath.row == items.count - 1{
             cell.lineView?.alpha = 0
         }
 
-        UIView.animate(withDuration: 0.1, delay: 0.05 + Double(indexPath.row)/25, options: .layoutSubviews, animations: {
-            cell.contentView.alpha = 1
-        }) { (complete) in
+        if maxHeight == nil {
+            cell.contentView.alpha = 0
+            UIView.animate(withDuration: 0.1, delay: 0.05 + Double(indexPath.row)/25, options: .layoutSubviews, animations: {
+                cell.contentView.alpha = 1
+            }) { (complete) in
 
+            }
         }
+
         return cell
     }
 }
