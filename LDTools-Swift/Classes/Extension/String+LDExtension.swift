@@ -608,6 +608,38 @@ document.createElement('meta');script.name = 'viewport';script.content=\"width=d
         get{return "<html><head><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'><style>*{ width: 100%; margin: 0; padding: 0 3; box-sizing: border-box;} img{ width: 100%;}</style></head><body>\(self)</body></html>"}
     }
 
+    /// 文本转换为富文本
+    func ld_setHtmlAttributedString(font: UIFont? = UIFont.systemFont(ofSize: 16), lineSpacing: CGFloat? = 10) -> NSMutableAttributedString {
+        var htmlString: NSMutableAttributedString? = nil
+        do {
+            if let data = self.replacingOccurrences(of: "\n", with: "<br/>").data(using: .utf8) {
+                htmlString = try NSMutableAttributedString(data: data, options: [
+                NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html,
+                NSAttributedString.DocumentReadingOptionKey.characterEncoding: NSNumber(value: String.Encoding.utf8.rawValue)], documentAttributes: nil)
+                let wrapHtmlString = NSMutableAttributedString(string: "\n")
+                // 判断尾部是否是换行符
+                if let weakHtmlString = htmlString, weakHtmlString.string.hasSuffix("\n") {
+                    htmlString?.deleteCharacters(in: NSRange(location: weakHtmlString.length - wrapHtmlString.length, length: wrapHtmlString.length))
+                }
+            }
+        } catch {
+        }
+
+        // 设置富文本字的大小
+        if let font = font {
+            htmlString?.addAttributes([
+            NSAttributedString.Key.font: font], range: NSRange(location: 0, length: htmlString?.length ?? 0))
+        }
+
+        // 设置行间距
+        if let weakLineSpacing = lineSpacing {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = weakLineSpacing
+            htmlString?.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: htmlString?.length ?? 0))
+        }
+        return htmlString ?? NSMutableAttributedString(string: self)
+    }
+
     ///去掉首尾空格
     var ld_removeHeadAndTailSpace:String {
         let whitespace = NSCharacterSet.whitespaces

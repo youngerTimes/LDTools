@@ -63,4 +63,9 @@ public extension UILabel{
         attribute.addAttribute(.shadow, value: shadow, range: NSRange(location: 0, length: self.text?.count ?? 0))
         attributedText = attribute
     }
+
+    /// 获取富文本宽高
+    func ld_attributeStringSize()->CGSize{
+        return attributedText?.boundingRect(with: CGSize(width: LD_ScreenW - 10, height: CGFloat.greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).size ?? CGSize.zero
+    }
 }

@@ -73,7 +73,7 @@ public class LD_MenuView: UIView {
                     make.right.equalToSuperview().offset(-5 * LD_RateW)
                     make.top.equalToSuperview().offset(LD_NavBarHeight)
                     make.width.greaterThanOrEqualTo(50 * LD_RateW)
-                    if maxHeight != nil{
+                    if maxHeight != nil && CGFloat(46 * items.count) * LD_RateW > maxHeight!{
                         make.height.equalTo(self!.maxHeight ?? 0)
                     }else{
                         make.height.equalTo(CGFloat(46 * items.count) * LD_RateW)
@@ -84,7 +84,7 @@ public class LD_MenuView: UIView {
                     make.centerX.equalTo(tapView!)
                     make.top.equalTo(tapView!.snp.bottom).offset(5 * LD_RateW)
                     make.width.equalTo(tapView!.ld_width)
-                    if maxHeight != nil{
+                    if maxHeight != nil && CGFloat(46 * items.count) * LD_RateW > maxHeight!{
                         make.height.equalTo(self!.maxHeight ?? 0)
                     }else{
                         make.height.equalTo(CGFloat(46 * items.count) * LD_RateW)

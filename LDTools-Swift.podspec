@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LDTools-Swift'
-  s.version          = '0.1.0'
+  s.version          = '0.2'
   s.summary          = '喜望软件：iOS集合开发包(Swift)'
   s.swift_versions   = '5.0'
 
@@ -22,11 +22,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'http://www.sinata.cn'
+  s.homepage         = 'https://github.com/youngerTimes/LDTools'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'younger_times' => '841720330@qq.com' }
-  s.source           = { :git => 'http://yangk@sinata.cn:10101/gitblit/r/ios/SwiftFrame.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/youngerTimes/LDTools', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'

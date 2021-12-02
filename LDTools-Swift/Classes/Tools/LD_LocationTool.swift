@@ -166,7 +166,7 @@ public class LD_LocationTool:NSObject,CLLocationManagerDelegate{
 
     public func startLocation(filter:Double = 10,asSingle:Bool = true,_ locationClouse:@escaping JQLocationLocationClouse,errorClouse:@escaping JQLocationErrorClouse,geocoderAddress:String? = nil,geocoderClouse:JQGeocoderClouse? = nil){
         manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.distanceFilter = filter
         manager.delegate = self
         currentType = 0

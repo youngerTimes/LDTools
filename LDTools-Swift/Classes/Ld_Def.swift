@@ -124,9 +124,9 @@ public let LD_ScreenW = UIScreen.main.bounds.size.width
 public let LD_ScreenH = UIScreen.main.bounds.size.height
 
 /// 屏幕的适配比例，适配6s
-public let LD_RateW   = LD_ScreenW/375.0
+public let LD_RateW   = 1.0
 
-public let LD_RateH   = LD_ScreenH/667.0
+public let LD_RateH   = 1.0
 
 /// Nav高度
 public let LD_NavBarHeight:CGFloat = (UIApplication.shared.statusBarFrame.size.height>20) ?88:64

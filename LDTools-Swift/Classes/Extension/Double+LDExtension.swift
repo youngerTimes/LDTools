@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension Double{
 
@@ -61,6 +62,29 @@ public extension Double{
             }
         }else{
             return "0"
+        }
+    }
+
+    //Cell平均分配宽度：避免小缝隙
+    func avgWidth(displayWidth:CGFloat,col:Int,space:CGFloat,indexPath:IndexPath)->CGSize{
+        var pxWidth = displayWidth * UIScreen.main.scale
+        pxWidth = pxWidth - space * CGFloat((col))
+        let mo = Int(pxWidth) % col
+        if mo != 0{
+            let fixPxWidth = pxWidth - CGFloat(mo)
+            var itemWidth = fixPxWidth / CGFloat(col)
+            let itemHeight  = itemWidth - 1.0
+            if indexPath.row % col < mo{
+                itemWidth = itemWidth - 1.0
+            }
+
+            let w = itemWidth / UIScreen.main.scale
+            let h = itemHeight / UIScreen.main.scale
+            return CGSize(width: w, height: h)
+        }else{
+            let itemWidth = pxWidth / CGFloat(col)
+            let w = itemWidth / UIScreen.main.scale
+            return CGSize(width: w, height: w)
         }
     }
 

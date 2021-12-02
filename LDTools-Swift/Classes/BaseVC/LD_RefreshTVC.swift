@@ -110,7 +110,14 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
             self.refreshStatusBind(to: self.scrollView!, {
                 weakSelf!.ld_getData()
             }) {
-                weakSelf!.ld_getData(isHeader: false)
+
+                do {
+                    let status = try weakSelf?.refreshStatus.value()
+                    print("--->\(status)")
+                    weakSelf!.ld_getData(isHeader: false)
+                } catch  {
+
+                }
             }.disposed(by: LD_disposeBag)
         }else {
             self.refreshStatusBind(to: self.scrollView!, {

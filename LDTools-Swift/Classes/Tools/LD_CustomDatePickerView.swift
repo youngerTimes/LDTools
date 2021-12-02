@@ -293,7 +293,10 @@ public class LD_CustomDatePickerView: UIView {
     }
     
     public func show(vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
-        vc.view.addSubview(self)
+
+        UIApplication.shared.keyWindow?.addSubview(self)
+
+//        vc.view.addSubview(self)
         callbackSelect  = callback
         callbackHidden = hiden
         

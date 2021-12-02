@@ -27,7 +27,7 @@ public class LD_ImagePickerTool: NSObject{
         case none
     }
 
-    private var authorizesTool = LD_AuthorizesTool.default //授权检查
+    public var authorizesTool = LD_AuthorizesTool.default //授权检查
     private var clouse:LD_ImagePickerClouse!
     private var mutiClouse:LD_ImagePickerMutiClouse!
     private var chooseMethodType:ChooseMethodType = .none //选择的类型
@@ -202,7 +202,7 @@ extension LD_ImagePickerTool:TZImagePickerControllerDelegate{
             mutiClouse!(photos,assets)
         }
 
-        if chooseMethodType == .profile {
+        if chooseMethodType == .profile || chooseMethodType == .single {
             clouse!(photos.first!)
         }
         reset()

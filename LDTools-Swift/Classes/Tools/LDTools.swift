@@ -186,32 +186,32 @@ public class LDTools:NSObject{
     }
 }
 
-public struct VersionModel:HandyJSON{
-    public init() {}
-    public var resultCount = 1
-    public var results = [VersionResultModel]()
-
-}
-
-class LD_Delegate<Input, Output> {
+open class LD_Delegate<Input, Output> {
     private var block: ((Input) -> Output?)?
-    func delegate<T: AnyObject>(on target: T, block: ((T, Input) -> Output)?) {
+    public func delegate<T: AnyObject>(on target: T, block: ((T, Input) -> Output)?) {
         self.block = { [weak target] input in
             guard let target = target else { return nil }
             return block?(target, input)
         }
     }
 
-    func call(_ input: Input) -> Output? {
+    public func call(_ input: Input) -> Output? {
         return block?(input)
     }
 }
 
-extension LD_Delegate where Input == Void {
+public extension LD_Delegate where Input == Void {
 
     func call() -> Output? {
         return call(())
     }
+}
+
+public struct VersionModel:HandyJSON{
+    public init() {}
+    public var resultCount = 1
+    public var results = [VersionResultModel]()
+
 }
 
 public struct VersionResultModel:HandyJSON{
