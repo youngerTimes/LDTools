@@ -161,7 +161,9 @@ public class LD_ImagePickerTool: NSObject{
                 let p = UIImagePickerController()
                 p.delegate = self
                 p.modalPresentationStyle = .fullScreen
-                p.allowsEditing = false
+                if clipSize != nil{
+                    p.allowsEditing = true
+                }
                 p.sourceType = .camera
                 p.cameraDevice = .front
                 LD_currentViewController().present(p, animated: true, completion: nil)

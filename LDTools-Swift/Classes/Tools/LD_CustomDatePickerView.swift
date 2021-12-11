@@ -28,12 +28,12 @@ public enum DatePickerSubType{
 public class LD_CustomDatePickerView: UIView {
     public typealias CallbackSelect = (Int,Int,Int,Int,Int)->Void
     public typealias CallbackHidden = ()->Void
-    
-    private var centerView = UIView()
-    private var pickerView = UIPickerView()
-    private var completeBtn = UIButton()
-    private var cancelBtn = UIButton()
-    private var callbackSelect:CallbackSelect?
+
+    public var centerView = UIView()
+    public var pickerView = UIPickerView()
+    public var completeBtn = UIButton()
+    public var cancelBtn = UIButton()
+    public var callbackSelect:CallbackSelect?
     private var callbackHidden:CallbackHidden?
     private let date = Date()
     private var datePickerSubType:DatePickerSubType = .Normal
@@ -46,7 +46,7 @@ public class LD_CustomDatePickerView: UIView {
     private var outSchoolYear = 0 //毕业年
     private var outSchoolMonth = 0 //毕业月
     private var allYears = [Any]() //年，可能包含“今天”的字符串
-    
+
     public var datePickerType:DatePickerType = .YMD
     public var selectYear:Int = Date().ld_nowYear()
     public var selectMonth:Int = Date().ld_nowMonth()
@@ -55,8 +55,8 @@ public class LD_CustomDatePickerView: UIView {
     public var selectMinute:Int = Date().ld_nowMinute()
     public var limitHour:Int = Date().ld_nowHour()
     public var limitMinute:Int = Date().ld_nowMinute()
-    
-    
+
+
     public var additionYear = 0 // 新增多少年，年的长度限制在今年
     public var limitToday = false // 是否限制到今天为最后的选择
     public var component_0_row = 0
@@ -64,46 +64,46 @@ public class LD_CustomDatePickerView: UIView {
     public var component_2_row = 0
     public var component_3_row = 0
     public var component_4_row = 0
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = CGRect(x: 0, y: 0, width: LD_ScreenW, height: LD_ScreenH)
         self.backgroundColor = UIColor(hexStr: "000000").withAlphaComponent(0.6)
-        
+
         centerView.backgroundColor = UIColor.white
         centerView.layer.cornerRadius = 8 * LD_RateW
         centerView.layer.masksToBounds = true
-        
+
         cancelBtn.setTitle("取消", for: .normal)
         cancelBtn.setTitleColor(UIColor(hexStr:"#9FA6AF"), for: .normal)
         cancelBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16,weight: .medium)
         cancelBtn.addTarget(self, action: #selector(hiden), for: .touchUpInside)
-        
+
         completeBtn.setTitle("确定", for: .normal)
         completeBtn.setTitleColor(UIColor(hexStr:"#1FBC45"), for: .normal)
         completeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 16,weight: .medium)
         completeBtn.addTarget(self, action: #selector(completeAction), for: .touchUpInside)
-        
+
         centerView.frame = CGRect(x: 0, y: LD_ScreenH, width: LD_ScreenW, height: 325 * LD_RateW)
-        
+
         addSubview(centerView)
         centerView.addSubview(cancelBtn)
         centerView.addSubview(completeBtn)
-        
+
         cancelBtn.snp.makeConstraints { (make) in
             make.top.equalTo(20 * LD_RateW)
             make.left.equalTo(20 * LD_RateW)
             make.width.equalTo(55 * LD_RateW)
             make.height.equalTo(25 * LD_RateW)
         }
-        
+
         completeBtn.snp.makeConstraints { (make) in
             make.top.equalTo(20 * LD_RateW)
             make.right.equalTo(-20 * LD_RateW)
             make.width.equalTo(55 * LD_RateW)
             make.height.equalTo(25 * LD_RateW)
         }
-        
+
         pickerView.dataSource = self
         pickerView.delegate = self
         centerView.addSubview(pickerView)
@@ -114,7 +114,7 @@ public class LD_CustomDatePickerView: UIView {
             make.top.equalToSuperview().offset(50 * LD_RateW)
         }
     }
-    
+
     @objc func hiden(){
         callbackHidden?()
         UIView.animate(withDuration: 0.3, animations: {
@@ -124,7 +124,7 @@ public class LD_CustomDatePickerView: UIView {
             self.removeFromSuperview()
         }
     }
-    
+
     /// 入职时间
     /// - Parameters:
     ///   - resignYear: 辞职年， 默认为“今年”
@@ -137,16 +137,16 @@ public class LD_CustomDatePickerView: UIView {
         self.resignMonth = rM
         self.selectYear = resignYear
         self.selectMonth = iM
-        
+
         vc.view.addSubview(self)
         callbackSelect  = callback
         callbackHidden = hiden
-        
+
         var selectComentRow_1 = 0
         for i in 1950...resignYear{
             allYears.append(i)
         }
-        
+
         //选中年的索引
         for (index,year) in allYears.enumerated(){
             if iY == (year as! NSInteger){
@@ -155,7 +155,7 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
@@ -168,13 +168,13 @@ public class LD_CustomDatePickerView: UIView {
             self.pickerView.reloadAllComponents()
         }
     }
-    
+
     public func showResign(rY:NSInteger,rM:NSInteger,iY:NSInteger,iM:NSInteger,vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
         datePickerSubType = .Resign
         self.inJobYear = iY
         self.inJobMonth = iM
         self.selectMonth = rM
-        
+
         vc.view.addSubview(self)
         callbackSelect  = callback
         callbackHidden = hiden
@@ -182,7 +182,7 @@ public class LD_CustomDatePickerView: UIView {
         for i in inJobYear...Date().ld_nowYear(){
             allYears.append(i)
         }
-        
+
         //选中年的索引
         for (index,year) in allYears.enumerated(){
             if iY == (year as! NSInteger){
@@ -191,9 +191,9 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
+
         allYears.append("至今")
-        
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
@@ -206,7 +206,7 @@ public class LD_CustomDatePickerView: UIView {
             self.pickerView.reloadAllComponents()
         }
     }
-    
+
     public func showInSchool(inSY:NSInteger,inSM:NSInteger,outSY:NSInteger,outSM:NSInteger,vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
         datePickerSubType = .enrol
         vc.view.addSubview(self)
@@ -217,12 +217,12 @@ public class LD_CustomDatePickerView: UIView {
         outSchoolYear = outSY
         outSchoolMonth = outSM
         selectMonth = inSchoolMonth
-        
+
         var selectComentRow_1 = 0
         for i in 1950...date.ld_nowYear(){
             allYears.append(i)
         }
-        
+
         //选中年的索引
         for (index,year) in allYears.enumerated(){
             if inSY == (year as! NSInteger){
@@ -232,8 +232,8 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
-        
+
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
@@ -246,7 +246,7 @@ public class LD_CustomDatePickerView: UIView {
             self.pickerView.reloadAllComponents()
         }
     }
-    
+
     public func showGraduate(inSY:NSInteger,inSM:NSInteger,outSY:NSInteger,outSM:NSInteger,vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
         datePickerSubType = .graduate
         vc.view.addSubview(self)
@@ -257,7 +257,7 @@ public class LD_CustomDatePickerView: UIView {
         outSchoolYear = outSY
         outSchoolMonth = outSM
         selectMonth = outSchoolMonth
-        
+
         if inSY == 0{
             for i in 1950...date.ld_nowYear(){
                 allYears.append(i)
@@ -267,7 +267,7 @@ public class LD_CustomDatePickerView: UIView {
                 allYears.append(i)
             }
         }
-        
+
         var selectComentRow_1 = 0
         //选中年的索引
         for (index,year) in allYears.enumerated(){
@@ -278,7 +278,7 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
@@ -291,7 +291,7 @@ public class LD_CustomDatePickerView: UIView {
             self.pickerView.reloadAllComponents()
         }
     }
-    
+
     public func show(vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
 
         UIApplication.shared.keyWindow?.addSubview(self)
@@ -299,15 +299,15 @@ public class LD_CustomDatePickerView: UIView {
 //        vc.view.addSubview(self)
         callbackSelect  = callback
         callbackHidden = hiden
-        
+
         for i in 1950...Date().ld_nowYear()+30{
             allYears.append(i)
         }
-        
+
         selectYear = date.ld_nowYear()
         selectMonth = date.ld_nowMonth()
         selectDay = date.ld_nowDay()
-        
+
         //选中年的索引
         for (index,year) in allYears.enumerated(){
             if selectYear == (year as! NSInteger){
@@ -315,8 +315,8 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
-        
+
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
@@ -331,7 +331,7 @@ public class LD_CustomDatePickerView: UIView {
             self.pickerView.reloadAllComponents()
         }
     }
-    
+
     public func showLimitToday(selectYear:NSInteger,selectMonth:NSInteger,selectDay:NSInteger,hour:NSInteger,minute:NSInteger,vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
         datePickerSubType = .today
         self.selectYear = selectYear
@@ -344,11 +344,11 @@ public class LD_CustomDatePickerView: UIView {
         vc.view.addSubview(self)
         callbackSelect  = callback
         callbackHidden = hiden
-        
+
         for i in Date().ld_nowYear()...Date().ld_nowYear()+30{
             allYears.append(i)
         }
-        
+
         //选中年的索引
         for (index,year) in allYears.enumerated(){
             if selectYear == (year as! NSInteger){
@@ -356,13 +356,13 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
         }) { (status) in
             self.pickerView.selectRow(self.component_0_row, inComponent: 0, animated: true)
-            
+
             if selectYear == self.date.ld_nowYear(){
                 self.component_1_row = self.selectMonth - self.date.ld_nowMonth()
                 self.pickerView.selectRow(self.component_1_row, inComponent: 1, animated: true)
@@ -376,22 +376,22 @@ public class LD_CustomDatePickerView: UIView {
             self.pickerView.reloadAllComponents()
         }
     }
-    
-    
-    
+
+
+
     public func showLimit(selectYear:NSInteger = Date().ld_nowYear(),selectMonth:NSInteger = Date().ld_nowMonth(), vc:UIViewController,callback:@escaping CallbackSelect,hiden:@escaping CallbackHidden){
         vc.view.addSubview(self)
         callbackSelect  = callback
         callbackHidden = hiden
-        
+
         self.selectMonth = selectMonth
         self.selectYear = selectYear
-        
+
         var selectComentRow_1 = 0
         for i in 1950...date.ld_nowYear(){
             allYears.append(i)
         }
-        
+
         //选中年的索引
         for (index,year) in allYears.enumerated(){
             if selectYear == (year as! NSInteger){
@@ -399,20 +399,20 @@ public class LD_CustomDatePickerView: UIView {
                 break
             }
         }
-        
+
         UIView.animate(withDuration: 0.6, animations: {
             self.centerView.frame = CGRect(x: 0, y: LD_ScreenH - 317 * LD_RateW, width: LD_ScreenW, height: 325 * LD_RateW)
             self.centerView.setNeedsLayout()
         }) { (status) in
-            self.pickerView.selectRow(selectComentRow_1, inComponent: 0, animated: true)
-            self.pickerView.selectRow(self.selectMonth - 1, inComponent: 1, animated: true)
-            if self.datePickerType == .YMD{
-                self.pickerView.selectRow(self.date.ld_nowDay() - 1, inComponent: 2, animated: true)
-            }
-            self.pickerView.reloadAllComponents()
+//            self.pickerView.selectRow(selectComentRow_1, inComponent: 0, animated: true)
+//            self.pickerView.selectRow(self.selectMonth - 1, inComponent: 1, animated: true)
+//            if self.datePickerType == .YMD{
+//                self.pickerView.selectRow(self.date.ld_nowDay() - 1, inComponent: 2, animated: true)
+//            }
+//            self.pickerView.reloadAllComponents()
         }
     }
-    
+
     //    改变系统的横线
     public func changesSpearatorLine(){
         for view in pickerView.subviews {
@@ -423,27 +423,27 @@ public class LD_CustomDatePickerView: UIView {
             }
         }
     }
-    
+
     //    MAKR: --Action
     @objc func completeAction(){
         hiden()
-        
+
         //注意：“至今”选项，年加了1，需要减回来
 //        if datePickerSubType == .today && limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay {
 //            //时间被过滤
 //            selectHour+=component_3_row
 //            selectMonth+=component_4_row
 //        }
-        
+
         if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay && date.ld_nowHour() == selectHour {
             selectMinute = component_4_row + limitMinute
         }else{
             selectMinute = component_4_row
         }
-        
+
         callbackSelect?(selectYear,selectMonth,selectDay,selectHour,selectMinute)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -459,7 +459,7 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
             return 2
         }
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return allYears.count
@@ -472,14 +472,14 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                     }else{
                         return date.ld_allMonths().count
                 }
-                
+
                 case .today:
                     if selectYear == date.ld_nowYear(){
                         return date.ld_allMonths().count - date.ld_nowMonth() + 1
                     }else{
                         return date.ld_allMonths().count
                 }
-                
+
                 case .Resign:
                     //选择成“至今”
                     if selectYear > date.ld_nowYear(){
@@ -494,7 +494,7 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                         return date.ld_allMonths().count - inJobMonth + 1
                     }
                     return date.ld_allMonths().count
-                
+
                 //入学
                 case .enrol:
                     if inSchoolYear == outSchoolYear && inSchoolMonth == outSchoolMonth{
@@ -505,7 +505,7 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                     else{
                         return date.ld_allMonths().count
                 }
-                
+
                 //毕业
                 case .graduate:
                     if selectYear == inSchoolYear{
@@ -514,19 +514,19 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                     else{
                         return date.ld_allMonths().count
                 }
-                
+
                 default:
                     return date.ld_allMonths().count
             }
         }
-        
+
         if component == 2 {
-            
+
             switch datePickerSubType {
                 case .today:
                     let days = Date.ld_getDays(selectYear, selectMonth)
                     return days - date.ld_nowDay()
-                
+
                 default:
                     if selectMonth == date.ld_nowMonth() && selectYear == date.ld_nowYear() && limitToday{
                         return date.ld_nowDay()
@@ -536,7 +536,7 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                     return days
             }
         }
-        
+
         if component == 3{
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay {
                 return 24 - limitHour
@@ -544,7 +544,7 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                 return 24
             }
         }
-        
+
         if component == 4{
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay && selectHour == date.ld_nowHour() {
                 return 60 - limitMinute
@@ -552,22 +552,22 @@ extension LD_CustomDatePickerView:UIPickerViewDataSource{
                 return 60
             }
         }
-        
+
         return 0
     }
-    
+
     public  func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 61 * LD_RateW
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
+
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = UIColor(hexStr: "404040")
         label.adjustsFontSizeToFitWidth = true
-        
+
         if component == 0 {
             let value = allYears[row]
             if value is NSInteger{
@@ -625,12 +625,12 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
                 if datePickerSubType == .enrol{
                     inSchoolYear = selectYear
                 }
-                
+
                 if datePickerSubType == .graduate{
                     outSchoolYear = selectYear
                 }
             }
-            
+
             if value is String{
                 selectYear = date.ld_nowYear()+1
                 selectMonth = date.ld_nowMonth()
@@ -638,19 +638,19 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
                 pickerView.reloadAllComponents()
                 return
             }
-            
+
             if datePickerSubType == .graduate{
                 if selectYear == inSchoolYear{
                     selectMonth = date.ld_allMonths()[inSchoolMonth - 1]
                     pickerView.selectRow(0, inComponent: 1, animated: true)
                 }
-                
+
                 if selectYear == date.ld_nowYear(){
                     selectMonth = 1
                     pickerView.selectRow(0, inComponent: 1, animated: true)
                 }
             }
-            
+
             if datePickerSubType == .today{
                 if selectYear == date.ld_nowYear(){
                     selectMonth = date.ld_nowMonth()
@@ -658,20 +658,20 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
                 }else{
                     selectMonth = date.ld_allMonths()[component_1_row]
                 }
-                
+
                 if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay {
                     selectHour = component_3_row + limitHour
                 }else{
                     selectHour = component_3_row
                 }
-                
+
                 if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay && selectHour == date.ld_nowHour()  {
                     selectMinute = component_4_row + limitMinute
                 }else{
                     selectMinute = component_4_row
                 }
             }
-            
+
             //进行偏移，重选第一个项目
             if datePickerSubType == .InJob || datePickerSubType == .Resign || datePickerSubType == .enrol{
                 if selectYear == inJobYear || selectYear == date.ld_nowYear(){
@@ -680,7 +680,7 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
                 }
             }
         }
-        
+
         if component == 1 {
             component_1_row = row
             if datePickerSubType == .Resign && selectYear == inJobYear && selectYear != date.ld_nowYear(){
@@ -693,20 +693,20 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
             else{
                 selectMonth = date.ld_allMonths()[row]
             }
-            
+
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay {
                 selectHour = component_3_row + limitHour
             }else{
                 selectHour = component_3_row
             }
-            
+
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay && selectHour == date.ld_nowHour()  {
                 selectMinute = component_4_row + limitMinute
             }else{
                 selectMinute = component_4_row
             }
         }
-        
+
         if component == 2 {
             component_2_row = row
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth{
@@ -714,20 +714,20 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
             }else{
                 selectDay = date.ld_allDays()[row]
             }
-            
+
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay {
                 selectHour = component_3_row + limitHour
             }else{
                 selectHour = component_3_row
             }
-            
+
             if limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay && selectHour == date.ld_nowHour() {
                 selectMinute = component_4_row + limitMinute
             }else{
                 selectMinute = component_4_row
             }
         }
-        
+
         if component == 3{
             component_3_row = row
             if datePickerSubType == .today && limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay {
@@ -736,7 +736,7 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
                 selectHour = row
             }
         }
-        
+
         if component == 4{
             component_4_row = row
             if datePickerSubType == .today && limitToday && date.ld_nowYear() == selectYear && date.ld_nowMonth() == selectMonth && date.ld_nowDay() == selectDay  {
@@ -745,7 +745,7 @@ extension LD_CustomDatePickerView:UIPickerViewDelegate{
                 selectMinute = row
             }
         }
-        
+
         pickerView.reloadAllComponents()
     }
 }

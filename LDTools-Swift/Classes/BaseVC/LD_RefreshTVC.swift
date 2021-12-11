@@ -108,12 +108,18 @@ open class LD_RefreshTVC: LD_BaseVC,LD_Refreshable{
         weak var weakSelf = self
         if (footer) {
             self.refreshStatusBind(to: self.scrollView!, {
+                weakSelf!.page = 1
                 weakSelf!.ld_getData()
             }) {
 
                 do {
                     let status = try weakSelf?.refreshStatus.value()
                     print("--->\(status)")
+                    switch status {
+                        case .endFooterRefresh:
+                            weakSelf!.page += 1
+                        default:break
+                    }
                     weakSelf!.ld_getData(isHeader: false)
                 } catch  {
 
