@@ -733,7 +733,7 @@ public extension UIImage{
     /// 根据图片大小进行重设图片
     /// - Parameter reSize: 图片大小
     /// - Returns: 返回图片
-    private func ld_reSizeImage(reSize:CGSize)->UIImage {
+     func ld_reSizeImage(reSize:CGSize)->UIImage {
         //UIGraphicsBeginImageContext(reSize);
         UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
         self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height))

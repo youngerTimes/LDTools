@@ -7,26 +7,26 @@
 
 import Foundation
 
-public enum LD_AppearanceStyle:Int{
-    case none = 0
-    case light = 1
-    case dark = 2
-}
+//public enum LD_AppearanceStyle:Int{
+//    case none = 0
+//    case light = 1
+//    case dark = 2
+//}
 
 
 /// 暗黑模式适配
-public protocol LD_ColorAppearanceProtocol:NSObject{
-    @available(iOS 12.0, *)
-    /// 所有的颜色变化,需要写到这里
-    func colorAppearance(_ style:LD_AppearanceStyle)
-}
+//public protocol LD_ColorAppearanceProtocol:NSObject{
+//    @available(iOS 12.0, *)
+//    /// 所有的颜色变化,需要写到这里
+//    func colorAppearance(_ style:LD_AppearanceStyle)
+//}
 
 /// 基础控件
 open class LD_BaseVC: UIViewController{
 
-    private(set) public var currentStyle:LD_AppearanceStyle = .none
+//    private(set) public var currentStyle:LD_AppearanceStyle = .none
     open var hh_popBlock:(() -> Void)?
-    open var closeDarkStyle:Bool = true //是否关闭暗黑模式
+//    open var closeDarkStyle:Bool = true //是否关闭暗黑模式
 
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,17 +183,17 @@ open class LD_BaseVC: UIViewController{
 //    }
 
     /// 旋转横屏,单纯的旋转【非强制】
-//    public func ld_forceOrientationLandscape() {
-//        let oriention = UIInterfaceOrientation.landscapeRight // 设置屏幕为横屏
-//        UIDevice.current.setValue(oriention.rawValue, forKey: "orientation")
-//        UIViewController.attemptRotationToDeviceOrientation()
-//    }
-//    // 旋转竖屏,单纯的旋转【非强制】
-//    public func ld_forceOrientationPortrait() {
-//        let oriention = UIInterfaceOrientation.portrait // 设置屏幕为竖屏
-//        UIDevice.current.setValue(oriention.rawValue, forKey: "orientation")
-//        UIViewController.attemptRotationToDeviceOrientation()
-//    }
+    public func ld_forceOrientationLandscape() {
+        let oriention = UIInterfaceOrientation.landscapeRight // 设置屏幕为横屏
+        UIDevice.current.setValue(oriention.rawValue, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
+    // 旋转竖屏,单纯的旋转【非强制】
+    public func ld_forceOrientationPortrait() {
+        let oriention = UIInterfaceOrientation.portrait // 设置屏幕为竖屏
+        UIDevice.current.setValue(oriention.rawValue, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+    }
 
 //    /// 默认显示方向
     open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{return .portrait}

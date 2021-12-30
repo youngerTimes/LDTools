@@ -18,8 +18,8 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
     public var lastVc: UIViewController!
     /// 隐藏nav
     open var hiddenNavVCs = [String]()
-    /// 透明nav
     open var translucentVCs = [String]()
+
     private var popDelegate: UIGestureRecognizerDelegate?
 
     //标题颜色
@@ -66,17 +66,8 @@ open class LD_BaseNavigationController:  UINavigationController, UINavigationCon
         }
         self.setNavigationBarHidden(hidden, animated: animated)
         self.lastVc = viewController
-    }
 
-    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-
-        //避免闪屏问题
-        var hidden = false
-          for key in translucentVCs {
-              if key == toVC.ld_identity {hidden = true;break}
-          }
-        navigationController.navigationBar.isTranslucent = hidden
-        return nil
+        navigationController.navigationBar.isTranslucent = true
     }
 
     //侧滑

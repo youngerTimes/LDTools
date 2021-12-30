@@ -10,9 +10,9 @@ import WebKit
 import SnapKit
 
 /// 网页控制器，对页面已进行适配，配有加载进度条
-public class LD_WebVC: LD_BaseVC {
+open class LD_WebVC: LD_BaseVC {
 
-    private var webView:WKWebView?
+    public var webView:WKWebView?
     private(set) var url = ""
     private(set) var htmlText = ""
     private var progressView = UIProgressView()
@@ -24,7 +24,7 @@ public class LD_WebVC: LD_BaseVC {
     """
 
 //    进度条颜色值
-    public var tintColor = UIColor.blue
+    open var tintColor = UIColor.blue
 
     public convenience init(url:String) {
         self.init()
@@ -36,7 +36,7 @@ public class LD_WebVC: LD_BaseVC {
         self.htmlText = htmlText.ld_warpHtml
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         reSetNavTransparence()
@@ -77,7 +77,7 @@ public class LD_WebVC: LD_BaseVC {
         }
     }
 
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         let value = change![NSKeyValueChangeKey(rawValue: "new")] as! Double
         print(value)
 

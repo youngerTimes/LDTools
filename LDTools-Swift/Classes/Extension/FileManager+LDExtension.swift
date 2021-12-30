@@ -134,7 +134,7 @@ public extension FileManager {
     /// - Returns: 返回创建的 创建文件夹路径
     @discardableResult
     static func ld_createFolder(folderPath: String) -> (isSuccess: Bool, error: String) {
-        if ld_judgeFileOrFolderExists(filePath: folderPath) {
+        if !ld_judgeFileOrFolderExists(filePath: folderPath) {
             return (true, "")
         }
         // 不存在的路径才会创建
