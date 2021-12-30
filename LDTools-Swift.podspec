@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LDTools-Swift'
-  s.version          = '0.2'
+  s.version          = '0.3'
   s.summary          = '喜望软件：iOS集合开发包(Swift)'
   s.swift_versions   = '5.0'
 
