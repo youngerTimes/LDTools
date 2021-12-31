@@ -39,7 +39,12 @@ open class LD_CustomVTMagicVC: LD_BaseVC {
         vtmagic.magicView.bubbleRadius = 2
         addChild(vtmagic)
         view.addSubview(vtmagic.magicView)
-        vtmagic.magicView.frame = CGRect(x: 0, y: 0, width:LD_ScreenW, height: LD_ScreenH-LD_NavBarHeight)
+        if navigationController?.navigationBar.isTranslucent ?? false{
+            vtmagic.magicView.frame = CGRect(x: 0, y: LD_NavBarHeight, width:LD_ScreenW, height: LD_ScreenH-LD_NavBarHeight)
+        }else{
+            vtmagic.magicView.frame = CGRect(x: 0, y:0, width:LD_ScreenW, height: LD_ScreenH-LD_NavBarHeight)
+        }
+
         vtmagic.magicView.reloadData()
         vtmagic.switch(toPage: 0, animated: false)
     }
